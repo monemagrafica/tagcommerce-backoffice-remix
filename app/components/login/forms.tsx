@@ -1,9 +1,10 @@
+import { Form } from "@remix-run/react"
 import type { FC } from "react"
 
 const FormLogin: FC = () => {
   return (
     <div className="wrapper-login">
-      <form method="post" id="form-login">
+      <Form method="post" id="form-login">
         <label htmlFor="email">email</label>
         <input type="text" id="email" name="email" />
 
@@ -11,7 +12,7 @@ const FormLogin: FC = () => {
         <input type="text" id="password" name="password" />
 
         <button type="submit">accedi</button>
-      </form>
+      </Form>
     </div>
   )
 }
