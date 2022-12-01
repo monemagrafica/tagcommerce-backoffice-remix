@@ -6,10 +6,10 @@ const FormLogin: FC = () => {
     <div className="wrapper-login">
       <Form method="post" id="form-login">
         <label htmlFor="email">email</label>
-        <input type="text" id="email" name="email" />
+        <input type="text" id="email" name="loginEmail" />
 
         <label htmlFor="password">password</label>
-        <input type="text" id="password" name="password" />
+        <input type="text" id="password" name="loginPassword" />
 
         <button type="submit">accedi</button>
       </Form>
@@ -19,9 +19,15 @@ const FormLogin: FC = () => {
 const FormRegistration: FC = () => {
   return (
     <div className="wrapper-login">
-      <form action="">
+      <Form method="post" id="form-register">
+        <label htmlFor="email">email</label>
+        <input type="text" id="email" name="registrationEmail" />
+        <label htmlFor="password">password</label>
+        <input type="text" id="password" name="registrationPassword" />
+        <label htmlFor="passwordRepeat">password</label>
+        <input type="text" id="password" name="registrationPasswordRepeat" />
         <button type="submit">accedi</button>
-      </form>
+      </Form>
     </div>
   )
 }
