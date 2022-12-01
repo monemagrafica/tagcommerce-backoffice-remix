@@ -29,9 +29,10 @@ export const action: ActionFunction = async ({ request }) => {
   const dataUser = Object.fromEntries(formData)
   const datiEsistenti = await getUsersData()
 
+  // se esiste il campo loginEmail gestisce il form di login altrimenti il form di registrazione
   if (formData.get("loginEmail")) {
-    //controlla se l'utente è gia inserito
     if (
+      //controlla se l'utente è gia inserito
       datiEsistenti.find((item: { mail: string; password: string }) => {
         return (
           dataUser.loginEmail === item.mail &&

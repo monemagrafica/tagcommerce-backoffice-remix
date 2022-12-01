@@ -1,7 +1,10 @@
-import { Form } from "@remix-run/react"
+import { Form, useTransition as useNavigation } from "@remix-run/react"
 import type { FC } from "react"
 
 const FormLogin: FC = () => {
+  const navigation = useNavigation()
+  console.log(navigation)
+
   return (
     <div className="wrapper-login">
       <Form method="post" id="form-login">
@@ -11,7 +14,9 @@ const FormLogin: FC = () => {
         <label htmlFor="password">password</label>
         <input type="text" id="password" name="loginPassword" />
 
-        <button type="submit">accedi</button>
+        <button type="submit" disabled={navigation.state === "submitting"}>
+          accedi
+        </button>
       </Form>
     </div>
   )
