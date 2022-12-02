@@ -1,13 +1,18 @@
-import { Form, useTransition as useNavigation } from "@remix-run/react"
+import {
+  Form,
+  useActionData,
+  useTransition as useNavigation,
+} from "@remix-run/react"
 import type { FC } from "react"
 
 const FormLogin: FC = () => {
   const navigation = useNavigation()
-  console.log(navigation)
+  const messaggiValidazione = useActionData()
 
   return (
     <div className="wrapper-login">
       <Form method="post" id="form-login">
+        {messaggiValidazione?.message && <p>{messaggiValidazione.message}</p>}
         <label htmlFor="email">email</label>
         <input type="text" id="email" name="loginEmail" />
 
@@ -22,16 +27,21 @@ const FormLogin: FC = () => {
   )
 }
 const FormRegistration: FC = () => {
+  const navigation = useNavigation()
+  const messaggiValidazione = useActionData()
   return (
     <div className="wrapper-login">
       <Form method="post" id="form-register">
+        {messaggiValidazione?.message && <p>{messaggiValidazione.message}</p>}
         <label htmlFor="email">email</label>
         <input type="text" id="email" name="registrationEmail" />
         <label htmlFor="password">password</label>
         <input type="text" id="password" name="registrationPassword" />
         <label htmlFor="passwordRepeat">password</label>
         <input type="text" id="password" name="registrationPasswordRepeat" />
-        <button type="submit">accedi</button>
+        <button type="submit" disabled={navigation.state === "submitting"}>
+          accedi
+        </button>
       </Form>
     </div>
   )
