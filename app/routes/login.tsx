@@ -14,7 +14,6 @@ import {
 
 const Login: FC = () => {
   const [switchForm, setSwitchForm] = useState(false)
-
   return (
     <div>
       {!switchForm ? (
@@ -31,6 +30,7 @@ const Login: FC = () => {
     </div>
   )
 }
+
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
   const dataUser = Object.fromEntries(formData)
