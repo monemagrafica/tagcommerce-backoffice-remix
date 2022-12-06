@@ -7,8 +7,11 @@ body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
 }
-
-main {
+ul {
+  list-style: none;
+  padding: 0;
+}
+.main-container {
   display: flex;
   height: 100vh;
 }
@@ -50,4 +53,29 @@ main {
 }
 .main-menu ul li a:hover {
   text-decoration: underline;
+}
+nav.userMenu {
+  display: flex;
+  justify-content: flex-end;
+}
+nav.userMenu ul {
+  margin-right: 2rem;
+  background-color: #f1ecdb;
+  margin-top: 0;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+nav.userMenu ul li {
+  display: inline-block;
+  margin-left: 20px;
+}
+nav.userMenu ul li:first-child {
+  margin-left: 0;
+}
+nav.userMenu ul li img {
+  width: 23px;
+}
+section.content {
+  flex: 1;
 }

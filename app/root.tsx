@@ -8,6 +8,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import SidebarLeft from "./components/mainUi/sidebarLeft";
+import UserMenu from "./components/mainUi/userMenu";
 import mainUiStyle from "./components/mainUi/mainUi.css";
 
 export const meta: MetaFunction = () => ({
@@ -34,10 +35,15 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <main>
+        <div className="main-container">
           <SidebarLeft />
-          <Outlet />
-        </main>
+          <section className="content">
+            <UserMenu />
+            <main>
+              <Outlet />
+            </main>
+          </section>
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
