@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node"
+//import { json } from "@remix-run/node"
 import { useCatch, useLoaderData } from "@remix-run/react"
 //mport { getProductsData } from "../data/DataFunctions"
 
