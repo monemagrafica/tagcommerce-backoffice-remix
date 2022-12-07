@@ -1,7 +1,6 @@
 //import { json } from "@remix-run/node"
 import { useCatch, useLoaderData } from "@remix-run/react"
 import { getProductsData } from "../data/DataFunctions"
-import data from "../data/products.json"
 import { json } from "@remix-run/node"
 export default function Index() {
   const mock = useLoaderData()
@@ -18,7 +17,7 @@ export default function Index() {
   )
 }
 export async function loader() {
-  const products = await getProductsData(data)
+  const products = await getProductsData()
 
   if (!products || products.length === 0) {
     throw json(
