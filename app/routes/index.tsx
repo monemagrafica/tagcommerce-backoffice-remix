@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node"
 import { useCatch, useLoaderData } from "@remix-run/react"
-import { getProductsData } from "../data/DataFunctions"
+//mport { getProductsData } from "../data/DataFunctions"
 
 export default function Index() {
   const mock = useLoaderData()
@@ -17,9 +17,9 @@ export default function Index() {
   )
 }
 export async function loader() {
-  const products = await getProductsData()
+  //const products = await getProductsData()
 
-  if (!products || products.length === 0) {
+  /*   if (!products || products.length === 0) {
     throw json(
       { message: "Prodotti mockup non trovati" },
       {
@@ -27,7 +27,7 @@ export async function loader() {
         statusText: "Prodotti non trovati",
       }
     )
-  }
+  } */
   return {
     products: [
       {
