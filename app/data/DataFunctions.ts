@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from 'path'
 
 export async function getUsersData() {
   const rawMockUsers =  fs.readFileSync("./app/data/mock.json", "utf-8");
@@ -8,7 +9,7 @@ export async function getUsersData() {
 }
 
 export async function getProductsData() {
-  const rawProduct =  fs.readFileSync("./data/products.json", "utf-8");
+  const rawProduct =  fs.readFileSync(path.resolve(__dirname, "./app/data/products.json"), "utf-8");
   const jProduct = JSON.parse(rawProduct);
   const product = jProduct ?? [];
   return product;
