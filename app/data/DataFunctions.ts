@@ -1,21 +1,20 @@
 import fs from "fs";
 
-
 export async function getUsersData() {
-  const rawMockUsers = await fs.readFileSync("./app/data/mock.json", "utf-8");
+  const rawMockUsers =  fs.readFileSync("./app/data/mock.json", "utf-8");
   const jMockUsers = JSON.parse(rawMockUsers);
   const MockUsers = jMockUsers.users ?? [];
   return MockUsers;
 }
 
 export async function getProductsData() {
-  const rawProduct = await fs.readFileSync("./app/data/products.json", "utf-8");
+  const rawProduct =  fs.readFileSync("./data/products.json", "utf-8");
   const jProduct = JSON.parse(rawProduct);
   const product = jProduct ?? [];
   return product;
 }
 export async function getValidazioni() {
-  const rawValidazioni = await fs.readFileSync("./app/data/validazioni.json", "utf-8");
+  const rawValidazioni =  fs.readFileSync("./app/data/validazioni.json", "utf-8");
   const jValidazioni = JSON.parse(rawValidazioni);
   const validazioni = jValidazioni ?? [];
   return validazioni;
