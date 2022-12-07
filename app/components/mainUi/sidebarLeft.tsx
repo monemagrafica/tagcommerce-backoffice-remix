@@ -13,7 +13,7 @@ const SidebarLeft: FC<Props> = (props: Props) => {
   return (
     <div className="sidebar-left">
       <div className="main-logo">
-        <img src={Logo} alt="logo" width="130" height="100" />
+        <img src={Logo} alt="logo" width="150" height="110" />
       </div>
       <nav className="main-menu">
         <ul>
