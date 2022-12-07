@@ -8,8 +8,8 @@ export async function getUsersData() {
   return MockUsers;
 }
 
-export async function getProductsData() {
-  const rawProduct = await fs.readFile("./app/data/products.json", "utf-8");
+export async function getProductsData(data: any) {
+  const rawProduct = await fs.readFile(data, "utf-8");
   const jProduct = JSON.parse(rawProduct);
   const product = jProduct ?? [];
   return product;
