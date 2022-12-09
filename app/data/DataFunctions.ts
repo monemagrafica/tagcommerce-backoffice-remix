@@ -2,29 +2,38 @@ import fs from "fs";
 
 
 export async function getUsersData() {
-  const rawMockUsers =  fs.readFileSync("./app/data/mock.json", "utf-8");
-  const jMockUsers = JSON.parse(rawMockUsers);
-  const MockUsers = jMockUsers.users ?? [];
-  return MockUsers;
+  const res = await fetch(`https://6390f7600bf398c73a97c655.mockapi.io/api/v1/users/`).then(
+    (res) => res.json());
+  return res;
 }
 
 export async function getProductsData() {
-  const rawProduct =  fs.readFileSync("./app/data/products.json", "utf-8");
-  const jProduct = JSON.parse(rawProduct);
-  const product = jProduct ?? [];
-  return product;
+  const res = await fetch(`https://6390f7600bf398c73a97c655.mockapi.io/api/v1/products/`).then(
+    (res) => res.json()
+  );
+  return res;
 }
 export async function getValidazioni() {
-  const rawValidazioni =  fs.readFileSync("./app/data/validazioni.json", "utf-8");
-  const jValidazioni = JSON.parse(rawValidazioni);
-  const validazioni = jValidazioni ?? [];
-  return validazioni;
+  const res = await fetch(`https://6390f7600bf398c73a97c655.mockapi.io/api/v1/users/`).then(
+    (response) => response.json()
+  );
+  return res;
 }
 
 export function writeProductsData(products: []) {
   return fs.writeFileSync('./app/data/products.json', JSON.stringify({ products: products || [] }))
 }
-export function writeUserData(users: []) {
-  return fs.writeFileSync('./app/data/mock.json', JSON.stringify({ users: users || [] }))
+export async function writeUserData(users: []) {
+
+  let url = 'https://6390f7600bf398c73a97c655.mockapi.io/api/v1/users/';
+
+  await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(users),
+  });
+
 }
 

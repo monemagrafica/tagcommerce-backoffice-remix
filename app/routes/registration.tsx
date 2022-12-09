@@ -27,6 +27,7 @@ export const action: ActionFunction = async ({ request }) => {
   // Riceve i dati dal form
   const formData = await request.formData();
   const dataUser = Object.fromEntries(formData);
+  console.log(dataUser);
   // Fetch dei dati
   const datiEsistenti = await getUsersData();
   const validazioni = await getValidazioni();
@@ -53,7 +54,7 @@ export const action: ActionFunction = async ({ request }) => {
     return { message: validazioni.UserEsistente };
   } else {
     datiEsistenti.push(dataUser);
-    await writeUserData(datiEsistenti);
+    writeUserData(datiEsistenti);
     console.log(datiEsistenti);
     return redirect("/login");
   }

@@ -1,50 +1,31 @@
-import {
-  Form,
-  useActionData,
-  useTransition as useNavigation,
-} from "@remix-run/react"
-import type { FC } from "react"
+import { ValidatedForm } from "remix-validated-form";
+import { withZod } from "@remix-validated-form/with-zod";
+import { z } from "zod";
+import { InputForm } from "../inputForm/inputForm";
+import { SubmitButton } from "../inputForm/submitButton";
 
-const FormLogin: FC = () => {
-  const navigation = useNavigation()
-  const messaggiValidazione = useActionData()
+const validator = withZod(
+  z.object({
+    firstName: z.string().min(1, { message: "First name is required" }),
+    lastName: z.string().min(1, { message: "Last name is required" }),
+    email: z
+      .string()
+      .min(1, { message: "Email is required" })
+      .email("Must be a valid email"),
+  })
+);
+
+function FormLogin() {
+  console.log("dio merda");
 
   return (
-    <div className="wrapper-login">
-      <Form method="post" id="form-login">
-        {messaggiValidazione?.message && <p>{messaggiValidazione.message}</p>}
-        <label htmlFor="email">email</label>
-        <input type="text" id="email" name="loginEmail" />
-
-        <label htmlFor="password">password</label>
-        <input type="text" id="password" name="loginPassword" />
-
-        <button type="submit" disabled={navigation.state === "submitting"}>
-          accedi
-        </button>
-      </Form>
-    </div>
-  )
-}
-const FormRegistration: FC = () => {
-  const navigation = useNavigation()
-  const messaggiValidazione = useActionData()
-  return (
-    <div className="wrapper-login">
-      <Form method="post" id="form-register">
-        {messaggiValidazione?.message && <p>{messaggiValidazione.message}</p>}
-        <label htmlFor="email">email</label>
-        <input type="text" id="email" name="registrationEmail" />
-        <label htmlFor="password">password</label>
-        <input type="text" id="password" name="registrationPassword" />
-        <label htmlFor="passwordRepeat">password</label>
-        <input type="text" id="password" name="registrationPasswordRepeat" />
-        <button type="submit" disabled={navigation.state === "submitting"}>
-          accedi
-        </button>
-      </Form>
-    </div>
-  )
+    <ValidatedForm validator={validator} method="post">
+      <InputForm name="firstName" label="First Name" type="text" />
+      <InputForm name="lastName" label="Last Name" type="text" />
+      <InputForm name="email" label="Email" type="email" />
+      <SubmitButton />
+    </ValidatedForm>
+  );
 }
 
-export { FormLogin, FormRegistration }
+export { FormLogin, validator };

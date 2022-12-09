@@ -9,7 +9,7 @@ export function validazioneCampoMail(input: FormDataEntryValue) {
     }
 }
 export function validazioneCampoPassword(input: FormDataEntryValue) {
-    console.log('test',);
+
     if (input.trim().length < 8 || !input.length) {
         return null;
     } else {
@@ -17,7 +17,7 @@ export function validazioneCampoPassword(input: FormDataEntryValue) {
     }
 }
 export function validazionePasswordControllo(input1: FormDataEntryValue, input2: FormDataEntryValue) {
-    console.log(input1.length);
+
 
     if ((input1 !== input2) || !input1.length) {
         return false

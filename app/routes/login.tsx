@@ -24,7 +24,8 @@ export const action: ActionFunction = async ({ request }) => {
   const datiEsistenti = await getUsersData();
   const validazioni = await getValidazioni();
 
-  console.log("formdata", formData.get("loginEmail"));
+  console.log("formdata", datiEsistenti);
+  console.log("formdata", dataUser);
   //controllo campi
   if (!validazioneCampoMail(dataUser.loginEmail)) {
     return { message: validazioni.email };
@@ -41,7 +42,7 @@ export const action: ActionFunction = async ({ request }) => {
       );
     })
   ) {
-    return redirect("/dashboard");
+    return redirect("/");
   } else {
     console.log("errore di autenticazione");
     return null;
