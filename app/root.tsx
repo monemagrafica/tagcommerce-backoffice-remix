@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -54,4 +54,10 @@ export default function App() {
 
 export function links() {
   return [{ rel: "stylesheet", href: mainUiStyle }];
+}
+
+export async function loader({ params }: LoaderArgs) {
+  console.log("fadsa", params);
+
+  return { params };
 }

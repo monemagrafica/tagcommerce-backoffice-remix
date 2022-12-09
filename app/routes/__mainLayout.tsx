@@ -2,13 +2,13 @@ import { Outlet } from "@remix-run/react";
 
 type Props = {};
 
-function loginLayout({}: Props) {
+function mainLayout({}: Props) {
   return (
     <div>
-      layout
+      MainLayout
       <Outlet />
     </div>
   );
 }
 
-export default loginLayout;
+export default mainLayout;

@@ -15,12 +15,11 @@ const validator = withZod(
   })
 );
 
-function FormLogin() {
+function FormLogin(userData: {}) {
   return (
-    <ValidatedForm validator={validator} method="post">
+    <ValidatedForm id="1" validator={validator} method="post">
       <InputForm name="email" label="Email" type="email" />
       <InputForm name="password" label="Password" type="password" />
-
       <SubmitButton />
     </ValidatedForm>
   );
