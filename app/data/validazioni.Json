@@ -1,5 +1,6 @@
 {
     "email": "la mail inserita ha un formato non riconosciuto",
+    "emailLength": "la mail inserita deve essere di almeno 8 caratteri",
     "password": "la password deve avere almeno 8 caratteri",
     "passwordMatch": "la password non coincide",
     "UserEsistente": "L'utente è già presente"
