@@ -1,5 +1,4 @@
 import { Outlet } from "@remix-run/react";
-
 type Props = {};
 
 function loginLayout({}: Props) {

@@ -1,9 +1,12 @@
+import { json, LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { FormLogin } from "~/components/login/forms";
 import { getUsersData } from "~/data/DataFunctions";
 
 const Login = () => {
-  const userData = useLoaderData();
+  const userData = useLoaderData<typeof loader>();
+  console.log(userData);
+
   return (
     <div className="wrapperLogin">
       <FormLogin userData={userData} />

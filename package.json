@@ -11,11 +11,11 @@
     "@remix-run/netlify": "^1.7.5",
     "@remix-run/node": "^1.7.5",
     "@remix-run/react": "^1.7.5",
-    "@remix-validated-form/with-zod": "^2.0.5",
     "cross-env": "^7.0.3",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.40.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.7.5",

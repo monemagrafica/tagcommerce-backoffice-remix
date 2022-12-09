@@ -13,6 +13,7 @@ export async function getProductsData() {
   );
   return res;
 }
+
 export async function getValidazioni() {
   const res = await fetch(`https://6390f7600bf398c73a97c655.mockapi.io/api/v1/users/`).then(
     (response) => response.json()
