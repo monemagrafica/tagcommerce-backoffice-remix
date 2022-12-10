@@ -1,4 +1,6 @@
 import type { LoaderArgs, MetaFunction } from "@remix-run/node";
+import { useLocation } from "@remix-run/react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Links,
   LiveReload,
@@ -34,7 +36,17 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <motion.div
+            key={useLocation().pathname}
+            initial={{ opacity: 0.5 }}
+            exit={{ opacity: 0.5 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
