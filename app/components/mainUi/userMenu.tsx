@@ -9,10 +9,10 @@ const UserMenu: FC<Props> = (props: Props) => {
     <nav className="userMenu">
       <ul>
         <li>
-          <img src={userIcon} alt="user icon" />
+          <img src={userIcon} alt="user icon" width={23} height={30} />
         </li>
         <li>
-          <img src={options} alt="option icon" />
+          <img src={options} alt="option icon" width={23} height={27} />
         </li>
       </ul>
     </nav>
