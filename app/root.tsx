@@ -1,5 +1,5 @@
 import type { LoaderArgs, MetaFunction } from "@remix-run/node";
-import remixImageStyles from "remix-image/remix-image.css";
+
 import {
   Links,
   LiveReload,
@@ -46,10 +46,7 @@ export default function App() {
 }
 
 export function links() {
-  return [
-    { rel: "stylesheet", href: mainUiStyle },
-    { rel: "stylesheet", href: remixImageStyles },
-  ];
+  return [{ rel: "stylesheet", href: mainUiStyle }];
 }
 
 export async function loader({ params }: LoaderArgs) {

@@ -1,32 +1,28 @@
-import { links } from "~/root";
 import type { prodotto } from "~/types/prodotti";
-import { Image } from "remix-image";
+import type { FC } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 type Props = { prodotti: [prodotto] };
 
-function ListaProdotti({ prodotti }) {
+const ListaProdotti: FC<Props> = ({ prodotti }) => {
   return (
     <ul>
       {prodotti.map((item: prodotto) => (
         <li key={item.id}>
           <div>
             {item.name},{item.price},{item.description}, {item.image}
-            <Image
-              src="https://i.imgur.com/5cQnAQC.png"
-              responsive={[
-                {
-                  size: { width: 100, height: 100 },
-                  maxWidth: 500,
-                },
-                {
-                  size: { width: 600, height: 600 },
-                },
-              ]}
+            <LazyLoadImage
+              src="https://fusebit.io/assets/images/11ty/3e6f79b6-1200.webp"
+              width={600}
+              height={400}
+              alt="Image Alt"
+              effect="blur"
             />
           </div>
         </li>
       ))}{" "}
     </ul>
   );
-}
+};
 
 export default ListaProdotti;
