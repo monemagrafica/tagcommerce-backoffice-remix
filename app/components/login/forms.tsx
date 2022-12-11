@@ -1,5 +1,5 @@
 import { type FieldValues, useForm } from "react-hook-form";
-import validazioneForm from "../../data/validazioni.json";
+//import validazioneForm from "../../data/validazioni.json";
 import { useState, useEffect, type FC } from "react";
 import type { user } from "~/types/user";
 import { useNavigate } from "@remix-run/react";
@@ -8,9 +8,16 @@ import { getUsersData, registerUsers } from "~/data/DataFunctions";
 
 type Props = {
   userData: [user];
+  validazioneForm: {
+    email: string;
+    emailLength: string;
+    password: string;
+    passwordMatch: string;
+    UserEsistente: string;
+  };
 };
 
-const FormLogin: FC<Props> = ({ userData }) => {
+const FormLogin: FC<Props> = ({ userData, validazioneForm }) => {
   const [controlUser, setControlUser] = useState(false);
 
   const navigate = useNavigate();
@@ -81,7 +88,7 @@ const FormLogin: FC<Props> = ({ userData }) => {
   );
 };
 
-const FormRegistration: FC<Props> = ({ userData }) => {
+const FormRegistration: FC<Props> = ({ userData, validazioneForm }) => {
   const [datiForm, setDatiForm] = useState({});
 
   const navigate = useNavigate();
