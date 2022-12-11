@@ -1,5 +1,5 @@
 import { type FieldValues, useForm } from "react-hook-form";
-import validazioneForm from "../../data/validazioni.Json";
+import validazioneForm from "../../data/validazioni.json";
 import { useState, useEffect, type FC } from "react";
 import type { user } from "~/types/user";
 import { useNavigate } from "@remix-run/react";
