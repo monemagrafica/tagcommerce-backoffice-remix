@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { FormLogin } from "~/components/login/forms";
 import { getUsersData } from "~/data/DataFunctions";
 
@@ -11,6 +11,7 @@ const Login = () => {
         userData={userData.users}
         validazioneForm={userData.validazioni}
       />
+      <Link to="/registration">registration</Link>
     </div>
   );
 };

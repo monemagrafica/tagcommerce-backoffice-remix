@@ -1,15 +1,18 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet, useLocation } from "@remix-run/react";
+
 import SidebarLeft from "~/components/mainUi/sidebarLeft";
 import UserMenu from "~/components/mainUi/userMenu";
 
 type Props = {};
 
-function mainLayout({}: Props) {
+function MainLayout({}: Props) {
+  console.log(useLocation());
   return (
     <div className="main-container">
       <SidebarLeft />
       <section className="content">
         <UserMenu />
+
         <main>
           <Outlet />
         </main>
@@ -18,4 +21,4 @@ function mainLayout({}: Props) {
   );
 }
 
-export default mainLayout;
+export default MainLayout;
