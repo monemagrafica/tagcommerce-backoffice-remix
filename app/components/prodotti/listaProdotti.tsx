@@ -12,7 +12,7 @@ const ListaProdotti: FC<Props> = ({ prodotti }) => {
           <div>
             {item.name},{item.price},{item.description}, {item.image}
             <LazyLoadImage
-              src="https://fusebit.io/assets/images/11ty/3e6f79b6-1200.webp"
+              src={item.image}
               width={600}
               height={400}
               alt="Image Alt"
