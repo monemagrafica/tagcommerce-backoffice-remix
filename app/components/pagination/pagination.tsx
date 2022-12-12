@@ -4,16 +4,35 @@ import type { prodotto } from "~/types/prodotti";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { DeleteButton, GoToEditButton } from "../mainUi/buttons";
+import { motion } from "framer-motion";
 
 type PropsItem = {
   currentItems: [prodotto];
+  offset: number;
 };
-const Items: FC<PropsItem> = ({ currentItems }) => {
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const childrenAnimated = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+};
+
+const Items: FC<PropsItem> = ({ currentItems, offset }) => {
+  console.log(offset);
+
   return (
-    <>
+    <motion.ul variants={container} initial="hidden" animate="show">
       {currentItems &&
         currentItems.map((item) => (
-          <li key={item.id}>
+          <motion.li key={item.id} variants={childrenAnimated}>
             <div className="productListName">{item.name}</div>
             <div className="productListVatiante">{item.varianti ?? "s"}</div>
             <div className="productListPrice">{item.price}€</div>
@@ -31,9 +50,9 @@ const Items: FC<PropsItem> = ({ currentItems }) => {
                 <DeleteButton />
               </div>
             </div>
-          </li>
+          </motion.li>
         ))}
-    </>
+    </motion.ul>
   );
 };
 
@@ -73,9 +92,9 @@ const Pagination: FC<PropsPagination> = ({ itemsPerPage, prodotti }) => {
         <li>thumb</li>
         <li></li>
       </ul>
-      <ul>
-        <Items currentItems={currentItems} />
-      </ul>
+
+      <Items currentItems={currentItems} offset={itemOffset} />
+
       <div className="pagination">
         <ReactPaginate
           breakLabel="..."
