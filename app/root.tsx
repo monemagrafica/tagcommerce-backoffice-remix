@@ -50,7 +50,5 @@ export function links() {
 }
 
 export async function loader({ params }: LoaderArgs) {
-  console.log("fadsa", params);
-
   return { params };
 }
