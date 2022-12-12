@@ -57,3 +57,17 @@
   width: 74px;
   margin: 0 0 0 auto;
 }
+
+.wrapperModaleProdotto {
+  position: fixed;
+  padding: 1rem;
+  background-color: #e6e0cb;
+}
+.backgroundModale {
+  background-color: rgba(109, 156, 158, 0.347);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}

@@ -2,10 +2,11 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { FC } from "react";
 import { Outlet } from "react-router";
-import ListaProdotti from "~/components/prodotti/listaProdotti";
+
 import { getProductsData } from "~/data/DataFunctions";
 import { AnimatePresence, motion } from "framer-motion";
 import style from "../../assets/css/prodotti.css";
+import Pagination from "~/components/pagination/pagination";
 
 const ProdottiLayout: FC = () => {
   const prodotti = useLoaderData();
@@ -20,7 +21,11 @@ const ProdottiLayout: FC = () => {
       >
         <h1>Prodotti</h1>
         <Outlet />
-        <ListaProdotti prodotti={prodotti} />
+        <div className="wrapperListaProdotti">
+          {prodotti.length && (
+            <Pagination itemsPerPage={8} prodotti={prodotti} />
+          )}
+        </div>
       </motion.div>
     </AnimatePresence>
   );

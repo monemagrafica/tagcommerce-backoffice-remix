@@ -20,8 +20,8 @@ const Items: FC<PropsItem> = ({ currentItems }) => {
             <LazyLoadImage
               className="productListThumb"
               src={item.image}
-              width={80}
-              height={60}
+              width={70}
+              height={52}
               alt="Image Alt"
               effect="blur"
             />

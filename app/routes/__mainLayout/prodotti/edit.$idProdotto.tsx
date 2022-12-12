@@ -13,9 +13,7 @@ const Edit: FC<Props> = (props: Props) => {
   console.log(prodottoPerId);
 
   return (
-    <div>
-      <ModaleProdotto prodotto={prodottoPerId} />
-    </div>
+    <ModaleProdotto prodotto={prodottoPerId} validazioni={data.validazioni} />
   );
 };
 

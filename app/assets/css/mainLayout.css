@@ -9,4 +9,5 @@ h1 {
   position: relative;
   border-left: 10px solid #ffcc0b;
   padding-left: 1rem;
+  margin-top: 0;
 }
