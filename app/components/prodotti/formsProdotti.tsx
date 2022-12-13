@@ -77,7 +77,7 @@ const FormProdotto: FC<Props> = ({
         </section>
         <div className="wrapperMidSection">
           <section className="buttons">
-            <Link to="/" className="prodottoSchedaBtn">
+            <Link to={`attributes`} className="prodottoSchedaBtn">
               <img
                 src={imgBtnAttributi}
                 alt="icona attributi"
