@@ -1,6 +1,10 @@
 import { type FieldValues, useForm } from "react-hook-form";
 import { type FC } from "react";
-import { prodotto } from "~/types/prodotti";
+import type { prodotto } from "~/types/prodotti";
+import { Link } from "@remix-run/react";
+import FooterFormsProdotti from "./footerFormsProdotti";
+import imgBtnAttributi from "../../assets/img/attributiBtn.svg";
+import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg";
 
 type Props = {
   prodotto: prodotto;
@@ -25,8 +29,9 @@ const FormProdotto: FC<Props> = ({ prodotto, validazioneForm }) => {
   };
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="mainFormWrapper">
+        {" "}
         <div className="form-control">
           <label>Nome</label>
           <input
@@ -39,62 +44,85 @@ const FormProdotto: FC<Props> = ({ prodotto, validazioneForm }) => {
             <p className="errorMsg">{validazioneForm.nome}</p>
           )}
         </div>
-        <div className="form-control">
-          <label>Descrizione</label>
-          <input
-            type="text"
-            {...register("descrizione", {
-              required: true,
-            })}
-          />
-          {errors.descrizione && errors.descrizione.type === "required" && (
-            <p className="errorMsg">{validazioneForm.descrizione}</p>
-          )}
+        <section className="prodotto">
+          <div className="form-control descrizione">
+            <label>Descrizione</label>
+            <textarea
+              rows={10}
+              {...register("descrizione", {
+                required: true,
+              })}
+            />
+            {errors.descrizione && errors.descrizione.type === "required" && (
+              <p className="errorMsg">{validazioneForm.descrizione}</p>
+            )}
+          </div>
+          <div className="form-control immagine">
+            <label>Immagine</label>
+            <input
+              type="file"
+              {...register("media", {
+                required: true,
+              })}
+            />
+            {errors.media && errors.media.type === "required" && (
+              <p className="errorMsg">{validazioneForm.media}</p>
+            )}
+          </div>
+        </section>
+        <div className="wrapperMidSection">
+          <section className="buttons">
+            <Link to="/" className="prodottoSchedaBtn">
+              <img
+                src={imgBtnAttributi}
+                alt="icona attributi"
+                width={20}
+                height={20}
+              />{" "}
+              <span>attributi</span>
+            </Link>
+            <Link to="/" className="prodottoSchedaBtn">
+              <img
+                src={imgBtnSpedizioni}
+                alt="icona spedizioni"
+                width={23}
+                height={20}
+              />{" "}
+              spedizioni
+            </Link>
+          </section>
+          <section className="datiNumerici">
+            <div className="form-control quantita">
+              <label>Quantita</label>
+              <input
+                type="number"
+                {...register("quantita", {
+                  required: true,
+                  minLength: 1,
+                })}
+              />
+              {errors.quantita && errors.quantita.type === "required" && (
+                <p className="errorMsg">{validazioneForm.quantita}</p>
+              )}
+            </div>
+            <div className="form-control prezzo">
+              <label>Prezzo</label>
+              <input
+                type="number"
+                {...register("prezzo", {
+                  required: true,
+                  minLength: 1,
+                })}
+              />
+              {errors.prezzo && errors.prezzo.type === "required" && (
+                <p className="errorMsg">{validazioneForm.prezzo}</p>
+              )}
+            </div>
+          </section>
         </div>
-        <div className="form-control">
-          <label>Immagine</label>
-          <input
-            type="file"
-            {...register("media", {
-              required: true,
-            })}
-          />
-          {errors.media && errors.media.type === "required" && (
-            <p className="errorMsg">{validazioneForm.media}</p>
-          )}
-        </div>
-        <div className="form-control">
-          <label>quantita</label>
-          <input
-            type="number"
-            {...register("quantita", {
-              required: true,
-              minLength: 1,
-            })}
-          />
-          {errors.quantita && errors.quantita.type === "required" && (
-            <p className="errorMsg">{validazioneForm.quantita}</p>
-          )}
-        </div>
-        <div className="form-control">
-          <label>prezzo</label>
-          <input
-            type="number"
-            {...register("prezzo", {
-              required: true,
-              minLength: 1,
-            })}
-          />
-          {errors.prezzo && errors.prezzo.type === "required" && (
-            <p className="errorMsg">{validazioneForm.prezzo}</p>
-          )}
-        </div>
-        <div className="form-control">
-          <label></label>
-          <button type="submit">Salva</button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <FooterFormsProdotti />
+    </form>
   );
 };
 export { FormProdotto };

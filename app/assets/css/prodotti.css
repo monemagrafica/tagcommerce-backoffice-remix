@@ -7,13 +7,14 @@
 }
 .wrapperListaProdotti ul.header {
   display: flex;
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 .wrapperListaProdotti ul.header li {
   flex: 1;
   font-size: 16px;
   border-bottom: 0px;
   padding-bottom: 0px;
+  font-weight: bold;
 }
 .wrapperListaProdotti ul {
   margin-top: 0;
@@ -60,9 +61,24 @@
 
 .wrapperModaleProdotto {
   position: fixed;
-  padding: 1rem;
   background-color: #e6e0cb;
+  max-width: 850px;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  border-radius: 17px;
+  overflow: hidden;
+  z-index: 100;
+  opacity: 0;
+  transform: translate(-50%, -50%);
 }
+.wrapperModaleProdotto header {
+  margin: 1.5rem 2rem 0 2rem;
+}
+.wrapperModaleProdotto .mainFormWrapper {
+  margin: 1rem 2rem;
+}
+
 .backgroundModale {
   background-color: rgba(109, 156, 158, 0.347);
   position: fixed;
@@ -70,4 +86,44 @@
   height: 100vh;
   left: 0;
   top: 0;
+  z-index: 100;
+  opacity: 0;
+}
+.wrapperMidSection {
+  display: flex;
+  justify-content: space-between;
+}
+.form-control {
+  margin-bottom: 1rem;
+}
+section.prodotto {
+  display: flex;
+}
+
+.wrapperModaleProdotto section.prodotto .form-control.descrizione {
+  flex: 2;
+}
+.wrapperModaleProdotto section.prodotto .form-control.immagine {
+  flex: 1;
+}
+.wrapperModaleProdotto section.datiNumerici .form-control.quantita {
+  max-width: 86px;
+  margin-bottom: 1;
+}
+.wrapperModaleProdotto section.datiNumerici .form-control.prezzo {
+  max-width: 86px;
+  margin-bottom: 1;
+}
+.wrapperModaleProdotto section.datiNumerici {
+  display: flex;
+  justify-content: flex-end;
+}
+.wrapperModaleProdotto section.footer {
+  display: flex;
+  background-color: #dbd4bb;
+  padding: 1rem 2rem;
+  justify-content: flex-end;
+}
+.wrapperModaleProdotto section.footer .backBtn {
+  margin-right: auto;
 }

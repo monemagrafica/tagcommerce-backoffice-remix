@@ -10,7 +10,6 @@ const Edit: FC<Props> = (props: Props) => {
   const data = useLoaderData<typeof loader>();
   const id = useParams().idProdotto;
   const prodottoPerId = data.products.find((item: prodotto) => item.id === id);
-  console.log(prodottoPerId);
 
   return (
     <ModaleProdotto prodotto={prodottoPerId} validazioni={data.validazioni} />

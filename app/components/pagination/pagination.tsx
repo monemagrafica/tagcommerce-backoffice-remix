@@ -12,27 +12,27 @@ type PropsItem = {
 };
 
 const container = {
-  hidden: {},
+  hidden: { opacity: 0, y: 30, transition: { duration: 0.5 } },
   show: {
-    transition: {
-      staggerChildren: 0.1,
-    },
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
   },
-};
-
-const childrenAnimated = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
 };
 
 const Items: FC<PropsItem> = ({ currentItems, offset }) => {
   console.log(offset);
 
   return (
-    <motion.ul variants={container} initial="hidden" animate="show">
+    <motion.ul
+      variants={container}
+      initial="hidden"
+      animate="show"
+      key={offset}
+    >
       {currentItems &&
         currentItems.map((item) => (
-          <motion.li key={item.id} variants={childrenAnimated}>
+          <li key={item.id}>
             <div className="productListName">{item.name}</div>
             <div className="productListVatiante">{item.varianti ?? "s"}</div>
             <div className="productListPrice">{item.price}€</div>
@@ -50,7 +50,7 @@ const Items: FC<PropsItem> = ({ currentItems, offset }) => {
                 <DeleteButton />
               </div>
             </div>
-          </motion.li>
+          </li>
         ))}
     </motion.ul>
   );

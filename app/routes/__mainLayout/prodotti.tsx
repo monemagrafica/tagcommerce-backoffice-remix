@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { Outlet } from "react-router";
 
 import { getProductsData } from "~/data/DataFunctions";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import style from "../../assets/css/prodotti.css";
 import Pagination from "~/components/pagination/pagination";
 
@@ -12,22 +12,22 @@ const ProdottiLayout: FC = () => {
   const prodotti = useLoaderData();
 
   return (
-    <AnimatePresence>
+    <>
+      <h1>Prodotti</h1>
+      <Outlet />
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         exit={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <h1>Prodotti</h1>
-        <Outlet />
         <div className="wrapperListaProdotti">
           {prodotti.length && (
             <Pagination itemsPerPage={8} prodotti={prodotti} />
           )}
         </div>
       </motion.div>
-    </AnimatePresence>
+    </>
   );
 };
 
