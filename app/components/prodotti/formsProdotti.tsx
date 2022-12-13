@@ -1,23 +1,27 @@
 import { type FieldValues, useForm } from "react-hook-form";
 import { type FC } from "react";
 import type { prodotto } from "~/types/prodotti";
+import type { attributi } from "~/types/attributi";
+import type { validazioniFormProdotto } from "~/types/validazioni";
 import { Link } from "@remix-run/react";
 import FooterFormsProdotti from "./footerFormsProdotti";
 import imgBtnAttributi from "../../assets/img/attributiBtn.svg";
 import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg";
+import GenerateFieldsVarianti from "./fieldsVarianti";
 
 type Props = {
   prodotto: prodotto;
-  validazioneForm: Validazioni;
+  validazioneForm: validazioniFormProdotto;
+  attributi: [attributi];
+  animateAndExit: () => void;
 };
-type Validazioni = {
-  nome: string;
-  descrizione: string;
-  quantita: string;
-  prezzo: string;
-  media: string;
-};
-const FormProdotto: FC<Props> = ({ prodotto, validazioneForm }) => {
+
+const FormProdotto: FC<Props> = ({
+  prodotto,
+  attributi,
+  validazioneForm,
+  animateAndExit,
+}) => {
   const {
     register,
     handleSubmit,
@@ -27,6 +31,7 @@ const FormProdotto: FC<Props> = ({ prodotto, validazioneForm }) => {
   const onSubmit = (data: FieldValues) => {
     console.log(data);
   };
+  console.log("attributi", attributi);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -91,38 +96,49 @@ const FormProdotto: FC<Props> = ({ prodotto, validazioneForm }) => {
               spedizioni
             </Link>
           </section>
-          <section className="datiNumerici">
-            <div className="form-control quantita">
-              <label>Quantita</label>
-              <input
-                type="number"
-                {...register("quantita", {
-                  required: true,
-                  minLength: 1,
-                })}
-              />
-              {errors.quantita && errors.quantita.type === "required" && (
-                <p className="errorMsg">{validazioneForm.quantita}</p>
-              )}
-            </div>
-            <div className="form-control prezzo">
-              <label>Prezzo</label>
-              <input
-                type="number"
-                {...register("prezzo", {
-                  required: true,
-                  minLength: 1,
-                })}
-              />
-              {errors.prezzo && errors.prezzo.type === "required" && (
-                <p className="errorMsg">{validazioneForm.prezzo}</p>
-              )}
-            </div>
-          </section>
+          {!attributi && (
+            <section className="datiNumerici">
+              <div className="form-control quantita">
+                <label>Quantita</label>
+                <input
+                  type="number"
+                  {...register("quantita", {
+                    required: true,
+                    minLength: 1,
+                  })}
+                />
+                {errors.quantita && errors.quantita.type === "required" && (
+                  <p className="errorMsg">{validazioneForm.quantita}</p>
+                )}
+              </div>
+              <div className="form-control prezzo">
+                <label>Prezzo</label>
+                <input
+                  type="number"
+                  {...register("prezzo", {
+                    required: true,
+                    minLength: 1,
+                  })}
+                />
+                {errors.prezzo && errors.prezzo.type === "required" && (
+                  <p className="errorMsg">{validazioneForm.prezzo}</p>
+                )}
+              </div>
+            </section>
+          )}
+          {attributi && (
+            <GenerateFieldsVarianti
+              attributi={attributi}
+              register={register}
+              errors={errors}
+              validazioneForm={validazioneForm}
+            />
+          )}
         </div>
       </div>
-      <FooterFormsProdotti />
+      <FooterFormsProdotti animateAndExit={animateAndExit} />
     </form>
   );
 };
+
 export { FormProdotto };

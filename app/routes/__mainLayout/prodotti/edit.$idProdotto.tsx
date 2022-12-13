@@ -12,7 +12,11 @@ const Edit: FC<Props> = (props: Props) => {
   const prodottoPerId = data.products.find((item: prodotto) => item.id === id);
 
   return (
-    <ModaleProdotto prodotto={prodottoPerId} validazioni={data.validazioni} />
+    <ModaleProdotto
+      prodotto={prodottoPerId}
+      validazioni={data.validazioni}
+      attributi={data.attributi}
+    />
   );
 };
 
@@ -27,6 +31,9 @@ export async function loader() {
     prezzo: "Prezzo non presente",
     media: "Immagine non presente",
   };
+  const attributi = [
+    { id: "1", nome: "taglia", valori: ["s", "m", "l", "xl", "xxl"] },
+  ];
   if (!products || products.length === 0) {
     throw json(
       { message: "Users mockup non trovati" },
@@ -36,5 +43,5 @@ export async function loader() {
       }
     );
   }
-  return { products, validazioni };
+  return { products, validazioni, attributi };
 }

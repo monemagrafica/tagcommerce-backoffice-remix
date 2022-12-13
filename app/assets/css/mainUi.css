@@ -13,10 +13,64 @@ ul {
   list-style: none;
   padding: 0;
 }
+select {
+  border: 0;
+  outline: 0;
+  background-color: white;
+  border-radius: 6px;
+  height: 38px;
+  font-family: "Zilla Slab", serif;
+  font-size: 1rem;
+  padding: 10px;
+}
+h1 {
+  font-family: "Zilla Slab", serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  color: #6f3e00;
+  position: relative;
+  border-left: 10px solid #ffcc0b;
+  padding-left: 1rem;
+  margin-top: 0;
+}
 
+input {
+  border: 0;
+  outline: 0;
+  background-color: white;
+  border-radius: 6px;
+  height: 38px;
+  font-family: "Zilla Slab", serif;
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px;
+}
+input[type="file"] {
+  background-color: #d5cfbb;
+  padding: 1rem;
+  height: 88%;
+}
+textarea {
+  border: 0;
+  outline: 0;
+  background-color: white;
+  border-radius: 6px;
+  font-family: "Zilla Slab", serif;
+  width: 100%;
+  font-size: 1rem;
+}
+
+h2.nomeProdotto {
+  font-family: "Zilla Slab", serif;
+  font-size: 26px;
+  color: #6f3e00;
+  margin: 0 0 1rem 0;
+  font-weight: normal;
+}
 .main-container {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
 .sidebar-left {
@@ -118,54 +172,13 @@ button,
   text-transform: capitalize;
   font-weight: 600;
 }
+.prodottoSchedaBtn:last-child {
+  margin-right: 0;
+}
 .prodottoSchedaBtn img {
   margin-right: 5px;
 }
 
-h1 {
-  font-family: "Zilla Slab", serif;
-  font-weight: 400;
-  font-size: 2.5rem;
-  color: #6f3e00;
-  position: relative;
-  border-left: 10px solid #ffcc0b;
-  padding-left: 1rem;
-  margin-top: 0;
-}
-
-input {
-  border: 0;
-  outline: 0;
-  background-color: white;
-  border-radius: 6px;
-  height: 38px;
-  font-family: "Zilla Slab", serif;
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px;
-}
-input[type="file"] {
-  background-color: #d5cfbb;
-  padding: 1rem;
-  height: 88%;
-}
-textarea {
-  border: 0;
-  outline: 0;
-  background-color: white;
-  border-radius: 6px;
-  font-family: "Zilla Slab", serif;
-  width: 100%;
-  font-size: 1rem;
-}
-
-h2.nomeProdotto {
-  font-family: "Zilla Slab", serif;
-  font-size: 26px;
-  color: #6f3e00;
-  margin: 0 0 1rem 0;
-  font-weight: normal;
-}
 .form-control {
   margin-right: 1rem;
 }

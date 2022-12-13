@@ -126,4 +126,27 @@ section.prodotto {
 }
 .wrapperModaleProdotto section.footer .backBtn {
   margin-right: auto;
+  cursor: pointer;
+}
+.attributi {
+  display: flex;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #dbd4bb;
+  border-radius: 6px;
+  justify-content: flex-end;
+}
+.attributi .form-control.quantita {
+  max-width: 86px;
+  margin-bottom: 1;
+}
+.attributi .form-control.prezzo {
+  max-width: 86px;
+  margin-bottom: 1;
+  margin-right: 0;
+}
+.attributi .form-control.attributo {
+  max-width: 86px;
+  margin-bottom: 1;
 }
