@@ -49,7 +49,7 @@ input {
 }
 
 input[type="file"] {
-    background-color: #d5cfbb;
+    background-color: #dbd4bb;
     padding: 1rem;
     height: 88%;
 }
@@ -62,6 +62,7 @@ textarea {
     font-family: "Zilla Slab", serif;
     width: 100%;
     font-size: 1rem;
+    padding: 10px 10px;
 }
 
 h2.nomeProdotto {
@@ -134,6 +135,7 @@ nav.userMenu ul {
     padding: 0.5rem 1rem 0.5rem 1rem;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-bottom: 0;
 }
 
 nav.userMenu ul li {
@@ -170,6 +172,15 @@ button.buttonNuovoProdotto {
     font-weight: bold;
     display: block;
     margin: 0 16px 1rem auto;
+}
+
+button.buttonSalva {
+    background-color: #ffcc0b;
+    padding: 1rem;
+    color: black;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 7px;
 }
 
 button.buttonNuovoProdotto img {

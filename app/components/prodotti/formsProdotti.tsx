@@ -1,20 +1,21 @@
-import { type FieldValues, useForm } from "react-hook-form";
-import { type FC } from "react";
-import type { prodotto } from "~/types/prodotti";
-import type { attributi } from "~/types/attributi";
-import type { validazioniFormProdotto } from "~/types/validazioni";
-import { Link } from "@remix-run/react";
-import FooterFormsProdotti from "./footerFormsProdotti";
-import imgBtnAttributi from "../../assets/img/attributiBtn.svg";
-import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg";
-import GenerateFieldsVarianti from "./fieldsVarianti";
+import { type FieldValues, useForm } from "react-hook-form"
+import { type FC } from "react"
+import type { prodotto } from "~/types/prodotti"
+import type { attributi } from "~/types/attributi"
+import type { validazioniFormProdotto } from "~/types/validazioni"
+import { Link } from "@remix-run/react"
+import FooterFormsProdotti from "./footerFormsProdotti"
+import imgBtnAttributi from "../../assets/img/attributiBtn.svg"
+import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg"
+import GenerateFieldsVarianti from "./fieldsVarianti"
+import { newProduct } from "~/data/DataFunctions"
 
 type Props = {
-  prodotto: prodotto;
-  validazioneForm: validazioniFormProdotto;
-  attributi: [attributi];
-  animateAndExit: () => void;
-};
+  prodotto: prodotto
+  validazioneForm: validazioniFormProdotto
+  attributi: [attributi]
+  animateAndExit: () => void
+}
 
 const FormProdotto: FC<Props> = ({
   prodotto,
@@ -26,12 +27,12 @@ const FormProdotto: FC<Props> = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
-  };
-  console.log("attributi", attributi);
+    newProduct(data)
+  }
+  console.log("attributi", attributi)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -138,7 +139,7 @@ const FormProdotto: FC<Props> = ({
       </div>
       <FooterFormsProdotti animateAndExit={animateAndExit} />
     </form>
-  );
-};
+  )
+}
 
-export { FormProdotto };
+export { FormProdotto }

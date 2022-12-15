@@ -1,22 +1,26 @@
-import type { prodotto } from "~/types/prodotti"
-import type { validazioniFormProdotto } from "~/types/validazioni"
-import type { attributi } from "~/types/attributi"
 import { useNavigate } from "@remix-run/react"
-import { useEffect, useState, type FC } from "react"
+import { useEffect, type FC } from "react"
+import type { prodotto } from "~/types/prodotti"
+import { FormProdotto } from "./formsProdotti"
 import { motion, useAnimationControls } from "framer-motion"
-import TagFieldManager from "./tagFieldManager"
+import type { attributi } from "~/types/attributi"
+import type { validazioniFormProdotto } from "~/types/validazioni"
 
 type Props = {
-  prodotto?: prodotto
-  validazioni?: validazioniFormProdotto
-  attributi?: [attributi]
+  prodotto: prodotto
+  validazioni: validazioniFormProdotto
+  attributi: [attributi]
 }
 
-const ModaleAttributi: FC<Props> = ({ prodotto }) => {
+const ModaleNuovoProdotto: FC<Props> = ({
+  prodotto,
+  validazioni,
+  attributi,
+}) => {
   const backgroundAnimation = useAnimationControls()
   const schedaAnimation = useAnimationControls()
   const navigateTo = useNavigate()
-  const [tag, setTag] = useState([])
+
   async function animateAndExit() {
     async function animationsBundle() {
       await Promise.all([
@@ -33,9 +37,9 @@ const ModaleAttributi: FC<Props> = ({ prodotto }) => {
     }
 
     await animationsBundle()
-    navigateTo(`/prodotti/edit/${prodotto.id}`)
+    navigateTo("..")
   }
-  console.log("navigateTo", navigateTo)
+  console.log(attributi)
 
   useEffect(() => {
     backgroundAnimation.set({ opacity: 0 })
@@ -54,12 +58,17 @@ const ModaleAttributi: FC<Props> = ({ prodotto }) => {
 
       <motion.div className="wrapperModaleProdotto" animate={schedaAnimation}>
         <header>
-          <h2 className="nomeProdotto"> Dati Prodotto</h2>
+          <h2 className="nomeProdotto"> Nuovo Prodotto</h2>
         </header>
-        <TagFieldManager />
+        <FormProdotto
+          animateAndExit={animateAndExit}
+          prodotto={prodotto}
+          validazioneForm={validazioni}
+          attributi={attributi}
+        />
       </motion.div>
     </>
   )
 }
 
-export default ModaleAttributi
+export default ModaleNuovoProdotto

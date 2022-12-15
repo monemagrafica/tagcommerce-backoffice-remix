@@ -1,28 +1,24 @@
 import { type FC } from "react"
-import type { prodotto } from "~/types/prodotti"
-import { useLoaderData, useParams } from "@remix-run/react"
-import { json } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
+import { json, type LoaderArgs } from "@remix-run/node"
 import ModaleAttributi from "~/components/prodotti/modaleAttributi"
-import { getProductsData } from "~/data/DataFunctions"
+import { getSingleProductData } from "~/data/DataFunctions"
 
 type Props = {}
 
 const EditAttributes: FC<Props> = () => {
   const data = useLoaderData<typeof loader>()
-  console.log("params", useParams())
-
-  const id = useParams().idProdotto
-  const prodottoPerId = data.products.find((item: prodotto) => item.id === id)
+  console.log("data", data)
 
   return (
-    <ModaleAttributi prodotto={prodottoPerId} validazioni={data.validazioni} />
+    <ModaleAttributi prodotto={data.products} validazioni={data.validazioni} />
   )
 }
 
 export default EditAttributes
 
-export async function loader() {
-  const products = await getProductsData()
+export async function loader({ params }: LoaderArgs) {
+  const products = await getSingleProductData(params.idProdotto)
   const validazioni = {
     nome: "Nome non presente",
     descrizione: "Descrizione non presente",

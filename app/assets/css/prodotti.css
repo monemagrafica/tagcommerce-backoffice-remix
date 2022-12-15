@@ -38,7 +38,6 @@
 }
 
 .wrapperListaProdotti ul li img {
-    max-width: 100px;
     height: auto;
     border-radius: 10px;
 }
@@ -142,6 +141,11 @@ section.prodotto {
     background-color: #dbd4bb;
     padding: 1rem 2rem;
     justify-content: flex-end;
+    align-items: center;
+}
+
+.wrapperModaleProdotto section.footer .form-control {
+    margin: 0;
 }
 
 .wrapperModaleProdotto section.footer .backBtn {

@@ -1,15 +1,15 @@
-import { type FC, useState } from "react";
-import ReactPaginate from "react-paginate";
-import type { prodotto } from "~/types/prodotti";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { DeleteButton, GoToEditButton } from "../mainUi/buttons";
-import { motion } from "framer-motion";
+import { type FC, useState } from "react"
+import ReactPaginate from "react-paginate"
+import type { prodotto } from "~/types/prodotti"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/blur.css"
+import { DeleteButton, GoToEditButton } from "../mainUi/buttons"
+import { motion } from "framer-motion"
 
 type PropsItem = {
-  currentItems: [prodotto];
-  offset: number;
-};
+  currentItems: [prodotto]
+  offset: number
+}
 
 const container = {
   hidden: { opacity: 0, y: 30, transition: { duration: 0.5 } },
@@ -18,10 +18,10 @@ const container = {
     y: 0,
     transition: { duration: 0.5 },
   },
-};
+}
 
 const Items: FC<PropsItem> = ({ currentItems, offset }) => {
-  console.log(offset);
+  console.log(offset)
 
   return (
     <motion.ul
@@ -33,14 +33,14 @@ const Items: FC<PropsItem> = ({ currentItems, offset }) => {
       {currentItems &&
         currentItems.map((item) => (
           <li key={item.id}>
-            <div className="productListName">{item.name}</div>
+            <div className="productListName">{item.nome}</div>
             <div className="productListVatiante">{item.varianti ?? "s"}</div>
-            <div className="productListPrice">{item.price}€</div>
+            <div className="productListPrice">{item.prezzo}€</div>
             <LazyLoadImage
               className="productListThumb"
               src={item.image}
-              width={70}
-              height={52}
+              width={50}
+              height={42}
               alt="Image Alt"
               effect="blur"
             />
@@ -53,35 +53,35 @@ const Items: FC<PropsItem> = ({ currentItems, offset }) => {
           </li>
         ))}
     </motion.ul>
-  );
-};
+  )
+}
 
 type PropsPagination = {
-  prodotti: prodotto[];
-  itemsPerPage: number;
-};
+  prodotti: prodotto[]
+  itemsPerPage: number
+}
 const Pagination: FC<PropsPagination> = ({ itemsPerPage, prodotti }) => {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
-  const [itemOffset, setItemOffset] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0)
 
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
-  const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = [...prodotti.slice(itemOffset, endOffset)];
-  const pageCount = Math.ceil(prodotti.length / itemsPerPage);
-  console.log("currentItems", currentItems);
+  const endOffset = itemOffset + itemsPerPage
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`)
+  const currentItems = [...prodotti.slice(itemOffset, endOffset)]
+  const pageCount = Math.ceil(prodotti.length / itemsPerPage)
+  console.log("currentItems", currentItems)
 
   // Invoke when user click to request another page.
   const handlePageClick = (event: { selected: number }) => {
-    const newOffset = (event.selected * itemsPerPage) % prodotti.length;
+    const newOffset = (event.selected * itemsPerPage) % prodotti.length
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
-  };
+    )
+    setItemOffset(newOffset)
+  }
 
   return (
     <>
@@ -107,7 +107,7 @@ const Pagination: FC<PropsPagination> = ({ itemsPerPage, prodotti }) => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

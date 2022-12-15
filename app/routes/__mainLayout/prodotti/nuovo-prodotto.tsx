@@ -1,18 +1,19 @@
 import { type FC } from "react"
 import { useLoaderData, useParams } from "@remix-run/react"
-import ModaleProdotto from "~/components/prodotti/modaleProdotto"
+
 import { json } from "@remix-run/node"
 import { getProductsData } from "~/data/DataFunctions"
 import type { prodotto } from "~/types/prodotti"
+import ModaleNuovoProdotto from "~/components/prodotti/modaleNuovoprodotto"
 
 type Props = {}
-const Edit: FC<Props> = (props: Props) => {
+const NuovoProdotto: FC<Props> = (props: Props) => {
   const data = useLoaderData<typeof loader>()
   const id = useParams().idProdotto
   const prodottoPerId = data.products.find((item: prodotto) => item.id === id)
 
   return (
-    <ModaleProdotto
+    <ModaleNuovoProdotto
       prodotto={prodottoPerId}
       validazioni={data.validazioni}
       attributi={data.attributi}
@@ -20,7 +21,7 @@ const Edit: FC<Props> = (props: Props) => {
   )
 }
 
-export default Edit
+export default NuovoProdotto
 
 export async function loader() {
   const products = await getProductsData()
@@ -31,7 +32,9 @@ export async function loader() {
     prezzo: "Prezzo non presente",
     media: "Immagine non presente",
   }
-
+  const attributi = [
+    { id: "1", nome: "taglia", valori: ["s", "m", "l", "xl", "xxl"] },
+  ]
   if (!products || products.length === 0) {
     throw json(
       { message: "Users mockup non trovati" },
@@ -41,5 +44,5 @@ export async function loader() {
       }
     )
   }
-  return { products, validazioni }
+  return { products, validazioni, attributi }
 }

@@ -1,5 +1,5 @@
-import type { LoaderArgs, MetaFunction } from "@remix-run/node";
-
+import type { LoaderArgs, MetaFunction } from "@remix-run/node"
+import { ContextData } from "./context/context"
 import {
   Links,
   LiveReload,
@@ -7,15 +7,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+} from "@remix-run/react"
 
-import mainUiStyle from "./assets/css/mainUi.css";
+import mainUiStyle from "./assets/css/mainUi.css"
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
-});
+})
 
 export default function App() {
   return (
@@ -35,20 +35,21 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <ContextData>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </ContextData>
       </body>
     </html>
-  );
+  )
 }
 
 export function links() {
-  return [{ rel: "stylesheet", href: mainUiStyle }];
+  return [{ rel: "stylesheet", href: mainUiStyle }]
 }
 
 export async function loader({ params }: LoaderArgs) {
-  return { params };
+  return { params }
 }
