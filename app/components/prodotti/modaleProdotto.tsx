@@ -1,21 +1,21 @@
-import { useNavigate } from "@remix-run/react"
-import { useEffect, type FC } from "react"
-import type { prodotto } from "~/types/prodotti"
-import { FormProdotto } from "./formsProdotti"
-import { motion, useAnimationControls } from "framer-motion"
-import type { attributi } from "~/types/attributi"
-import type { validazioniFormProdotto } from "~/types/validazioni"
+import { useNavigate } from "@remix-run/react";
+import { useEffect, type FC } from "react";
+import type { prodotto } from "~/types/prodotti";
+import { FormProdotto } from "./formsProdotti";
+import { motion, useAnimationControls } from "framer-motion";
+import type { attributi } from "~/types/attributi";
+import type { validazioniFormProdotto } from "~/types/validazioni";
 
 type Props = {
-  prodotto: prodotto
-  validazioni: validazioniFormProdotto
-  attributi: [attributi]
-}
+  prodotto: prodotto;
+  validazioni: validazioniFormProdotto;
+  attributi: [attributi];
+};
 
 const ModaleProdotto: FC<Props> = ({ prodotto, validazioni, attributi }) => {
-  const backgroundAnimation = useAnimationControls()
-  const schedaAnimation = useAnimationControls()
-  const navigateTo = useNavigate()
+  const backgroundAnimation = useAnimationControls();
+  const schedaAnimation = useAnimationControls();
+  const navigateTo = useNavigate();
 
   async function animateAndExit() {
     async function animationsBundle() {
@@ -29,20 +29,19 @@ const ModaleProdotto: FC<Props> = ({ prodotto, validazioni, attributi }) => {
           y: 50,
           transition: { duration: 0.3 },
         }),
-      ])
+      ]);
     }
 
-    await animationsBundle()
-    navigateTo("..")
+    await animationsBundle();
+    navigateTo("..");
   }
-  console.log(attributi)
 
   useEffect(() => {
-    backgroundAnimation.set({ opacity: 0 })
-    backgroundAnimation.start({ opacity: 1 })
-    schedaAnimation.set({ opacity: 0, y: 0, x: "-50%" })
-    schedaAnimation.start({ opacity: 1, y: "-50%", x: "-50%" })
-  }, [])
+    backgroundAnimation.set({ opacity: 0 });
+    backgroundAnimation.start({ opacity: 1 });
+    schedaAnimation.set({ opacity: 0, y: 0, x: "-50%" });
+    schedaAnimation.start({ opacity: 1, y: "-50%", x: "-50%" });
+  }, []);
 
   return (
     <>
@@ -64,7 +63,7 @@ const ModaleProdotto: FC<Props> = ({ prodotto, validazioni, attributi }) => {
         />
       </motion.div>
     </>
-  )
-}
+  );
+};
 
-export default ModaleProdotto
+export default ModaleProdotto;

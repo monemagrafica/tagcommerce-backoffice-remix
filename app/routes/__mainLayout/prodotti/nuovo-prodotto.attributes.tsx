@@ -1,19 +1,14 @@
-import { type FC } from "react"
+import { type FC } from "react";
 
-import { useParams } from "@remix-run/react"
+import { useParams } from "@remix-run/react";
+import ModaleAttributi from "~/components/prodotti/modaleAttributi";
 
-import ModaleAttributi from "~/components/prodotti/modaleAttributi"
-import { addAttribute } from "~/data/DataFunctions"
-
-type Props = {}
+type Props = {};
 
 const NewAttributes: FC<Props> = () => {
-  const params = useParams()
-  console.log(params)
+  const params = useParams();
 
-  return (
-    <ModaleAttributi prodotto={prodottoPerId} validazioni={data.validazioni} />
-  )
-}
+  return <ModaleAttributi />;
+};
 
-export default NewAttributes
+export default NewAttributes;

@@ -1,28 +1,40 @@
-import { useState } from "react"
-import { WithContext as ReactTags } from "react-tag-input"
+import {
+  useState,
+  useEffect,
+  type FC,
+  type SetStateAction,
+  type Dispatch,
+} from "react";
+import { WithContext as ReactTags } from "react-tag-input";
 
+type Props = {
+  setFieldAttributes: Dispatch<SetStateAction<[]>>;
+};
 const KeyCodes = {
   comma: 188,
   enter: 13,
-}
+};
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter]
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-const TagFieldManager = () => {
-  const [tags, setTags] = useState([])
+const TagFieldManager: FC<Props> = ({ setFieldAttributes }) => {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    setFieldAttributes(tags);
+  }, [tags]);
 
   const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i))
-  }
+    setTags(tags.filter((tag, index) => index !== i));
+  };
 
   const handleAddition = (tag) => {
-    setTags([...tags, tag])
-  }
-
+    setTags([...tags, tag]);
+  };
   const handleTagClick = (index) => {
-    console.log("The tag at index " + index + " was clicked")
-  }
-  console.log(tags)
+    console.log("The tag at index " + index + " was clicked");
+  };
+
   return (
     <div className="app">
       <div>
@@ -37,6 +49,6 @@ const TagFieldManager = () => {
         />
       </div>
     </div>
-  )
-}
-export default TagFieldManager
+  );
+};
+export default TagFieldManager;

@@ -1,51 +1,48 @@
-import { type FieldValues, useForm } from "react-hook-form"
+import { type FieldValues, useForm } from "react-hook-form";
 //import validazioneForm from "../../data/validazioni.json";
-import { useState, useEffect, type FC } from "react"
-import type { user } from "~/types/user"
-import { useNavigate } from "@remix-run/react"
-import { json } from "@remix-run/node"
-import { getUsersData, registerUsers } from "~/data/DataFunctions"
+import { useState, useEffect, type FC } from "react";
+import type { user } from "~/types/user";
+import { useNavigate } from "@remix-run/react";
+import { json } from "@remix-run/node";
+import { getUsersData, registerUsers } from "~/data/DataFunctions";
 
 type Props = {
-  userData: [user]
+  userData: [user];
   validazioneForm: {
-    email: string
-    emailLength: string
-    password: string
-    passwordMatch: string
-    UserEsistente: string
-  }
-}
+    email: string;
+    emailLength: string;
+    password: string;
+    passwordMatch: string;
+    UserEsistente: string;
+  };
+};
 
 const FormLogin: FC<Props> = ({ userData, validazioneForm }) => {
-  const [controlUser, setControlUser] = useState(false)
+  const [controlUser, setControlUser] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (controlUser) {
-      console.log(controlUser)
-
-      navigate("/")
+      navigate("/");
     }
-  }, [controlUser])
+  }, [controlUser]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data: FieldValues) => {
     const controlloDati = userData.find(
       (user: user) => user.mail === data.mail && user.password === data.password
-    )
-    console.log(controlUser)
+    );
 
     if (controlloDati != undefined) {
-      setControlUser(true)
+      setControlUser(true);
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -85,39 +82,39 @@ const FormLogin: FC<Props> = ({ userData, validazioneForm }) => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
 const FormRegistration: FC<Props> = ({ userData, validazioneForm }) => {
-  const [datiForm, setDatiForm] = useState({})
+  const [datiForm, setDatiForm] = useState({});
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     // POST request using fetch inside useEffect React hook
 
-    registerUsers(datiForm)
+    registerUsers(datiForm);
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, [datiForm])
+  }, [datiForm]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data: FieldValues) => {
     const controlloDati = userData.find(
       (user: user) => user.mail === data.mail || user.password === data.password
-    )
+    );
     if (controlloDati) {
-      navigate("/registration")
+      navigate("/registration");
     } else {
-      delete data.passwordMatch
-      setDatiForm(data)
-      navigate("/login")
+      delete data.passwordMatch;
+      setDatiForm(data);
+      navigate("/login");
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -166,11 +163,11 @@ const FormRegistration: FC<Props> = ({ userData, validazioneForm }) => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export async function loader() {
-  const products = await getUsersData()
+  const products = await getUsersData();
 
   if (!products || products.length === 0) {
     throw json(
@@ -179,9 +176,9 @@ export async function loader() {
         status: 404,
         statusText: "users non trovati",
       }
-    )
+    );
   }
-  return products
+  return products;
 }
 
-export { FormLogin, FormRegistration }
+export { FormLogin, FormRegistration };

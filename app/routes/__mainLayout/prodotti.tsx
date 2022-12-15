@@ -1,27 +1,24 @@
-import { json } from "@remix-run/node"
-import { useLoaderData, useNavigate } from "@remix-run/react"
-import { type FC, useState, useEffect } from "react"
-import { Outlet } from "react-router"
-import { ShareContext } from "~/context/context"
-import { useContext } from "react"
-import { getProductsData } from "~/data/DataFunctions"
-import { motion } from "framer-motion"
-import style from "../../assets/css/prodotti.css"
-import Pagination from "~/components/pagination/pagination"
-import { NewProductButton } from "~/components/mainUi/buttons"
+import { json } from "@remix-run/node";
+import { useLoaderData, useNavigate } from "@remix-run/react";
+import { type FC, useState, useEffect } from "react";
+import { Outlet } from "react-router";
+import { ShareContext } from "~/context/context";
+import { useContext } from "react";
+import { getProductsData } from "~/data/DataFunctions";
+import { motion } from "framer-motion";
+import style from "../../assets/css/prodotti.css";
+import Pagination from "~/components/pagination/pagination";
+import { NewProductButton } from "~/components/mainUi/buttons";
 
 const ProdottiLayout: FC = () => {
-  const contextData = useContext(ShareContext)
-  console.log("contextData", contextData)
-
-  const prodotti = useLoaderData()
-  const [OpenNewProduct, setOpenNewProduct] = useState(false)
-  const navigate = useNavigate()
+  const prodotti = useLoaderData();
+  const [OpenNewProduct, setOpenNewProduct] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     if (OpenNewProduct) {
-      navigate("nuovo-prodotto")
+      navigate("nuovo-prodotto");
     }
-  }, [OpenNewProduct])
+  }, [OpenNewProduct]);
 
   return (
     <>
@@ -41,13 +38,13 @@ const ProdottiLayout: FC = () => {
         </div>
       </motion.div>
     </>
-  )
-}
+  );
+};
 
-export default ProdottiLayout
+export default ProdottiLayout;
 
 export async function loader() {
-  const products = await getProductsData()
+  const products = await getProductsData();
 
   if (!products || products.length === 0) {
     throw json(
@@ -56,11 +53,11 @@ export async function loader() {
         status: 404,
         statusText: "Prodotti non trovati",
       }
-    )
+    );
   }
-  return products
+  return products;
 }
 
 export function links() {
-  return [{ rel: "stylesheet", href: style }]
+  return [{ rel: "stylesheet", href: style }];
 }

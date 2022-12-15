@@ -14,7 +14,7 @@ export async function getProductsData() {
   );
   return res;
 }
-export async function getSingleProductData(id:string) {
+export async function getSingleProductData(id: string) {
   const res = await fetch(`https://6390f7600bf398c73a97c655.mockapi.io/api/v1/products/${id}`).then(
     (res) => res.json()
   );
@@ -46,9 +46,7 @@ export function registerUsers(userData: userData) {
     "https://6390f7600bf398c73a97c655.mockapi.io/api/v1/users",
     requestOptions
   )
-    .then((response) => response.json())
-    .then((data) => console.log(data)
-    );
+    .then((response) => response.json());
 }
 
 export function newProduct(prodotto: FieldValues) {
@@ -79,7 +77,5 @@ export function addAttribute(attribute: FieldValues, id: string) {
     `https://6390f7600bf398c73a97c655.mockapi.io/api/v1/products:${id}`,
     requestOptions
   )
-    .then((response) => response.json())
-    .then((data) => console.log(data)
-    );
+    .then((response) => response.json());
 }

@@ -1,19 +1,18 @@
-import React, { createContext } from "react"
+import React, { createContext, useState } from "react";
 
-const ShareContext = createContext()
-
+const ShareContext = createContext();
 
 const ContextData = ({ children }) => {
+  const [attribute, setAttribute] = useState();
 
-    const dataToShare = {
-        data: [1, 2, 3, 4, 5, 6]
-    }
-    //provider che wrappi i componenti che devono ricevere i dati
-    return (
-        <ShareContext.Provider value={{ dataToShare }} >
-            {children}
-        </ShareContext.Provider>
-    )
-}
+  const data = {
+    attribute: attribute,
+    setAttribute: setAttribute,
+  };
+  //provider che wrappi i componenti che devono ricevere i dati
+  return (
+    <ShareContext.Provider value={{ data }}>{children}</ShareContext.Provider>
+  );
+};
 
-export { ShareContext, ContextData }
+export { ShareContext, ContextData };

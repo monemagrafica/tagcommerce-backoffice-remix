@@ -1,8 +1,7 @@
-import { Link } from "@remix-run/react"
-import { FC } from "react"
-import backBtn from "../../assets/img/backBtn.svg"
+import type { FC } from "react";
+import backBtn from "../../assets/img/backBtn.svg";
 
-type Props = { animateAndExit: () => void }
+type Props = { animateAndExit: () => void };
 
 const FooterFormsProdotti: FC<Props> = ({ animateAndExit }) => {
   return (
@@ -20,7 +19,7 @@ const FooterFormsProdotti: FC<Props> = ({ animateAndExit }) => {
         <button className="buttonSalva">Salva</button>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FooterFormsProdotti
+export default FooterFormsProdotti;
