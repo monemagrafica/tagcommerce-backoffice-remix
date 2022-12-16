@@ -1,10 +1,10 @@
 import { type FC } from "react";
-import ModaleAttributi from "~/components/prodotti/modaleAttributi";
+import ModaleVarianti from "~/components/prodotti/modaleVarianti";
 
 type Props = {};
 
 const NewAttributes: FC<Props> = () => {
-  return <ModaleAttributi />;
+  return <ModaleVarianti />;
 };
 
 export default NewAttributes;

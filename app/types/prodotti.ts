@@ -1,5 +1,9 @@
 import type { attributi } from "./attributi"
-
+export type varianti = {
+    id: string,
+    attributi: [string]
+    prezzo: string
+}
 export type prodotto = {
     id: string,
     nome: string,
@@ -7,5 +11,5 @@ export type prodotto = {
     description: string,
     image: string
     attributi?: attributi
-
+    varianti?: [varianti]
 }

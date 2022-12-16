@@ -1,39 +1,58 @@
-import { type FieldValues, useForm } from "react-hook-form"
-import { type FC } from "react"
-import type { prodotto } from "~/types/prodotti"
-import type { validazioniFormProdotto } from "~/types/validazioni"
-import { Link } from "@remix-run/react"
-import FooterFormsProdotti from "./footerFormsProdotti"
-import imgBtnAttributi from "../../assets/img/attributiBtn.svg"
-import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg"
-import GenerateFieldsVarianti from "./fieldsVarianti"
-import { newProduct } from "~/data/DataFunctions"
-import { attributi } from "~/types/attributi"
+import { type FieldValues, useForm } from "react-hook-form";
+import { type FC } from "react";
+import type { prodotto } from "~/types/prodotti";
+import type {
+  typeValidazioniFormProdotto,
+  typeValidazioniFormVarianti,
+} from "~/types/validazioni";
+import { Link } from "@remix-run/react";
+import FooterFormsProdotti from "./footerFormsProdotti";
+import imgBtnAttributi from "../../assets/img/attributiBtn.svg";
+import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg";
+import { postNewProduct } from "~/data/DataFunctions";
+import imageVarianti from "../../assets/img/varianti.svg";
+import { attributi } from "~/types/attributi";
 
-type Props = {
-  prodotto: prodotto
-  validazioneForm: validazioniFormProdotto
-  attributi: attributi
-  animateAndExit: () => void
-}
+const validazioniFormProdotto = {
+  nome: "Nome non presente",
+  descrizione: "Descrizione non presente",
+  quantita: "Quantità non presente",
+  prezzo: "Prezzo non presente",
+  media: "Immagine non presente",
+};
+const validazioniFormVarianti = {
+  quantita: "Quantità non presente",
+  prezzo: "Prezzo non presente",
+};
 
-const FormProdotto: FC<Props> = ({
-  prodotto,
-  validazioneForm,
+type PropsFormProdotto = {
+  validazioneForm: typeValidazioniFormProdotto;
+  newProdotto: prodotto;
+  animateAndExit: () => void;
+};
+
+type PropsFormVarianti = {
+  attributi: attributi;
+  validazioneForm: typeValidazioniFormVarianti;
+  newProdotto: prodotto;
+  animateAndExit: () => void;
+};
+
+const FormProdotto: FC<PropsFormProdotto> = ({
   animateAndExit,
-  attributi,
+  newProdotto,
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data: FieldValues) => {
-    newProduct(data)
-  }
+    postNewProduct(data);
+  };
 
-  console.log("attributi", attributi)
+  console.log("attributi", newProdotto);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +67,7 @@ const FormProdotto: FC<Props> = ({
             })}
           />
           {errors.nome && errors.nome.type === "required" && (
-            <p className="errorMsg">{validazioneForm.nome}</p>
+            <p className="errorMsg">{validazioniFormProdotto.nome}</p>
           )}
         </div>
         <section className="prodotto">
@@ -61,7 +80,7 @@ const FormProdotto: FC<Props> = ({
               })}
             />
             {errors.descrizione && errors.descrizione.type === "required" && (
-              <p className="errorMsg">{validazioneForm.descrizione}</p>
+              <p className="errorMsg">{validazioniFormProdotto.descrizione}</p>
             )}
           </div>
           <div className="form-control immagine">
@@ -73,7 +92,7 @@ const FormProdotto: FC<Props> = ({
               })}
             />
             {errors.media && errors.media.type === "required" && (
-              <p className="errorMsg">{validazioneForm.media}</p>
+              <p className="errorMsg">{validazioniFormProdotto.media}</p>
             )}
           </div>
         </section>
@@ -98,7 +117,7 @@ const FormProdotto: FC<Props> = ({
               spedizioni
             </Link>
           </section>
-          {!attributi && (
+          {!newProdotto.attributi && (
             <section className="datiNumerici">
               <div className="form-control quantita">
                 <label>Quantita</label>
@@ -110,7 +129,7 @@ const FormProdotto: FC<Props> = ({
                   })}
                 />
                 {errors.quantita && errors.quantita.type === "required" && (
-                  <p className="errorMsg">{validazioneForm.quantita}</p>
+                  <p className="errorMsg">{validazioniFormProdotto.quantita}</p>
                 )}
               </div>
               <div className="form-control prezzo">
@@ -123,24 +142,87 @@ const FormProdotto: FC<Props> = ({
                   })}
                 />
                 {errors.prezzo && errors.prezzo.type === "required" && (
-                  <p className="errorMsg">{validazioneForm.prezzo}</p>
+                  <p className="errorMsg">{validazioniFormProdotto.prezzo}</p>
                 )}
               </div>
             </section>
           )}
-          {attributi && (
-            <GenerateFieldsVarianti
-              attributi={attributi}
-              register={register}
-              errors={errors}
-              validazioneForm={validazioneForm}
-            />
+          {newProdotto.attributi && (
+            <div className="form-control">
+              <Link to="./varianti" className="prodottoSchedaBtn">
+                <img
+                  src={imageVarianti}
+                  alt="icona varianti"
+                  width={23}
+                  height={20}
+                />{" "}
+                Varianti
+              </Link>
+            </div>
           )}
         </div>
       </div>
       <FooterFormsProdotti animateAndExit={animateAndExit} />
     </form>
-  )
-}
+  );
+};
 
-export { FormProdotto }
+const FormVarianti: FC<PropsFormVarianti> = ({ attributi, animateAndExit }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="attributi">
+        <div className="form-control attributo">
+          <label htmlFor={attributi[0].nome}>{attributi[0].nome}</label>
+          <select name={attributi[0].nome} id={attributi[0].nome}>
+            {attributi[0].lista.map((item) => {
+              return (
+                <option key={item.id} value={item.id}>
+                  {item.text}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="form-control quantita">
+          <label>Quantita</label>
+          <input
+            type="number"
+            {...register("quantita", {
+              required: true,
+              minLength: 1,
+            })}
+          />
+          {errors.quantita && errors.quantita.type === "required" && (
+            <p className="errorMsg">{validazioniFormVarianti.quantita}</p>
+          )}
+        </div>
+        <div className="form-control prezzo">
+          <label>Prezzo</label>
+          <input
+            type="number"
+            {...register("prezzo", {
+              required: true,
+              minLength: 1,
+            })}
+          />
+          {errors.prezzo && errors.prezzo.type === "required" && (
+            <p className="errorMsg">{validazioniFormVarianti.prezzo}</p>
+          )}
+        </div>
+      </div>
+      <FooterFormsProdotti animateAndExit={animateAndExit} />
+    </form>
+  );
+};
+
+export { FormProdotto, FormVarianti };

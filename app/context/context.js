@@ -4,12 +4,15 @@ const ShareContext = createContext();
 
 const ContextData = ({ children }) => {
   const [attribute, setAttribute] = useState();
+  const [newProdotto, setNewProdotto] = useState({});
 
   const data = {
     attribute: attribute,
     setAttribute: setAttribute,
+    newProdotto: newProdotto,
+    setNewProdotto: setNewProdotto,
   };
-  //provider che wrappi i componenti che devono ricevere i dati
+
   return (
     <ShareContext.Provider value={{ data }}>{children}</ShareContext.Provider>
   );

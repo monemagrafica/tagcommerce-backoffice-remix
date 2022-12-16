@@ -1,24 +1,24 @@
-import { useNavigate } from "@remix-run/react";
-import { useEffect } from "react";
-import type { FC, Dispatch, SetStateAction } from "react";
-import { FormProdotto } from "./formsProdotti";
+import type { prodotto } from "~/types/prodotti";
+import type { validazioniFormVarianti } from "~/types/validazioni";
+import type { attributi } from "~/types/attributi";
+import { Link, useNavigate } from "@remix-run/react";
+import { useEffect, useState, useContext, type FC } from "react";
 import { motion, useAnimationControls } from "framer-motion";
-import type { validazioniFormProdotto } from "~/types/validazioni";
+import { ShareContext } from "~/context/context";
+import { FormVarianti } from "./formsProdotti";
 
 type Props = {
-  validazioni: validazioniFormProdotto;
-  newProdotto: Dispatch<SetStateAction<{}>>;
-  setNewProdotto: Dispatch<SetStateAction<{}>>;
+  prodotto?: prodotto;
+  validazioni?: validazioniFormVarianti;
+  attributi?: attributi;
 };
 
-const ModaleNuovoProdotto: FC<Props> = ({
-  newProdotto,
-  setNewProdotto,
-  validazioni,
-}) => {
+const ModaleAttributi: FC<Props> = () => {
   const backgroundAnimation = useAnimationControls();
   const schedaAnimation = useAnimationControls();
   const navigateTo = useNavigate();
+
+  const contextData = useContext(ShareContext);
 
   async function animateAndExit() {
     async function animationsBundle() {
@@ -36,7 +36,7 @@ const ModaleNuovoProdotto: FC<Props> = ({
     }
 
     await animationsBundle();
-    navigateTo("..");
+    navigateTo(`/prodotti/nuovo-prodotto`);
   }
 
   useEffect(() => {
@@ -56,16 +56,15 @@ const ModaleNuovoProdotto: FC<Props> = ({
 
       <motion.div className="wrapperModaleProdotto" animate={schedaAnimation}>
         <header>
-          <h2 className="nomeProdotto"> Nuovo Prodotto</h2>
+          <h2 className="nomeProdotto"> Dati Prodotto</h2>
         </header>
-        <FormProdotto
+        <FormVarianti
+          attributi={contextData.data.newProdotto?.attributi}
           animateAndExit={animateAndExit}
-          validazioneForm={validazioni}
-          newProdotto={newProdotto}
         />
       </motion.div>
     </>
   );
 };
 
-export default ModaleNuovoProdotto;
+export default ModaleAttributi;

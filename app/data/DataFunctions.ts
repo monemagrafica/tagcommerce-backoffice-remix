@@ -49,7 +49,7 @@ export function registerUsers(userData: userData) {
     .then((response) => response.json());
 }
 
-export function newProduct(prodotto: FieldValues) {
+export function postNewProduct(prodotto: FieldValues) {
 
   const requestOptions = {
     method: "POST",
