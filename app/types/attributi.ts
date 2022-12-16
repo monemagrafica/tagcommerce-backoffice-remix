@@ -1,6 +1,7 @@
-export type attributi = {
+export type attributi = [{
+nome: string;
+lista:[{    
     id: string,
-    nome: string,
-    valori: [string],
+    text: string}]
 
-}
+}]

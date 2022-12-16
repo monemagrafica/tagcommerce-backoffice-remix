@@ -1,24 +1,24 @@
-import type { prodotto } from "~/types/prodotti";
-import type { validazioniFormProdotto } from "~/types/validazioni";
-import type { attributi } from "~/types/attributi";
-import { useNavigate } from "@remix-run/react";
-import { useEffect, useState, useContext, type FC } from "react";
-import { motion, useAnimationControls } from "framer-motion";
-import TagFieldManager from "./tagFieldManager";
-import { ShareContext } from "~/context/context";
+import type { prodotto } from "~/types/prodotti"
+import type { validazioniFormProdotto } from "~/types/validazioni"
+import type { attributi } from "~/types/attributi"
+import { useNavigate } from "@remix-run/react"
+import { useEffect, useState, useContext, type FC } from "react"
+import { motion, useAnimationControls } from "framer-motion"
+import TagFieldManager from "./tagFieldManager"
+import { ShareContext } from "~/context/context"
 
 type Props = {
-  prodotto?: prodotto;
-  validazioni?: validazioniFormProdotto;
-  attributi?: [attributi];
-};
+  prodotto?: prodotto
+  validazioni?: validazioniFormProdotto
+  attributi?: attributi
+}
 
 const ModaleAttributi: FC<Props> = ({ prodotto }) => {
-  const backgroundAnimation = useAnimationControls();
-  const schedaAnimation = useAnimationControls();
-  const navigateTo = useNavigate();
-  const [tag, setTag] = useState([]);
-  const contextData = useContext(ShareContext);
+  const backgroundAnimation = useAnimationControls()
+  const schedaAnimation = useAnimationControls()
+  const navigateTo = useNavigate()
+  const [tag, setTag] = useState([])
+  const contextData = useContext(ShareContext)
 
   async function animateAndExit() {
     async function animationsBundle() {
@@ -32,19 +32,19 @@ const ModaleAttributi: FC<Props> = ({ prodotto }) => {
           y: 50,
           transition: { duration: 0.3 },
         }),
-      ]);
+      ])
     }
 
-    await animationsBundle();
-    navigateTo(`/prodotti/nuovo-prodotto`);
+    await animationsBundle()
+    navigateTo(`/prodotti/nuovo-prodotto`)
   }
 
   useEffect(() => {
-    backgroundAnimation.set({ opacity: 0 });
-    backgroundAnimation.start({ opacity: 1 });
-    schedaAnimation.set({ opacity: 0, y: 0, x: "-50%" });
-    schedaAnimation.start({ opacity: 1, y: "-50%", x: "-50%" });
-  }, []);
+    backgroundAnimation.set({ opacity: 0 })
+    backgroundAnimation.start({ opacity: 1 })
+    schedaAnimation.set({ opacity: 0, y: 0, x: "-50%" })
+    schedaAnimation.start({ opacity: 1, y: "-50%", x: "-50%" })
+  }, [])
 
   return (
     <>
@@ -63,8 +63,8 @@ const ModaleAttributi: FC<Props> = ({ prodotto }) => {
         <div className="form-control">
           <button
             onClick={() => {
-              contextData.data.setAttribute(tag);
-              navigateTo(`/prodotti/nuovo-prodotto`);
+              contextData.data.setAttribute(tag)
+              navigateTo(`/prodotti/nuovo-prodotto`)
             }}
             className="buttonSalva"
           >
@@ -73,7 +73,7 @@ const ModaleAttributi: FC<Props> = ({ prodotto }) => {
         </div>
       </motion.div>
     </>
-  );
-};
+  )
+}
 
-export default ModaleAttributi;
+export default ModaleAttributi

@@ -1,14 +1,14 @@
-import type { FC } from "react";
-import type { FieldValues, UseFormRegister } from "react-hook-form";
-import type { attributi } from "~/types/attributi";
-import type { validazioniFormProdotto } from "~/types/validazioni";
+import type { FC } from "react"
+import type { FieldValues, UseFormRegister } from "react-hook-form"
+import type { attributi } from "~/types/attributi"
+import type { validazioniFormProdotto } from "~/types/validazioni"
 
 type generateFieldsVariantiType = {
-  attributi: [attributi];
-  register: UseFormRegister<FieldValues>;
-  errors?: any;
-  validazioneForm: validazioniFormProdotto;
-};
+  attributi: attributi
+  register: UseFormRegister<FieldValues>
+  errors?: any
+  validazioneForm: validazioniFormProdotto
+}
 const GenerateFieldsVarianti: FC<generateFieldsVariantiType> = ({
   attributi,
   register,
@@ -20,12 +20,12 @@ const GenerateFieldsVarianti: FC<generateFieldsVariantiType> = ({
       <div className="form-control attributo">
         <label htmlFor={attributi[0].nome}>{attributi[0].nome}</label>
         <select name={attributi[0].nome} id={attributi[0].nome}>
-          {attributi[0].valori.map((item) => {
+          {attributi[0].lista.map((item) => {
             return (
-              <option key={item} value={item}>
-                {item}
+              <option key={item.id} value={item.id}>
+                {item.id}
               </option>
-            );
+            )
           })}
         </select>
       </div>
@@ -56,7 +56,7 @@ const GenerateFieldsVarianti: FC<generateFieldsVariantiType> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GenerateFieldsVarianti;
+export default GenerateFieldsVarianti
