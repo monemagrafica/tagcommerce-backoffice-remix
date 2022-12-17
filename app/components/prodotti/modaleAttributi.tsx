@@ -61,7 +61,10 @@ const ModaleAttributi: FC<Props> = () => {
         <div className="form-control">
           <button
             onClick={() => {
-              contextData.data.setNewProdotto({ attributi: tag });
+              contextData.data.setNewProdotto((prev) => {
+                const updatedObj = { ...prev, attributi: tag };
+                return updatedObj;
+              });
               navigateTo(`/prodotti/nuovo-prodotto`);
             }}
             className="buttonSalva"

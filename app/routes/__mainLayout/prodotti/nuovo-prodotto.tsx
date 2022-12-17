@@ -11,6 +11,7 @@ type Props = {};
 const NuovoProdotto: FC<Props> = (props: Props) => {
   const data = useLoaderData<typeof loader>();
   const shareData = useContext(ShareContext);
+  console.log("shareData", shareData);
 
   return (
     <ModaleNuovoProdotto

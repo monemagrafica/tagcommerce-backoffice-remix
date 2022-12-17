@@ -1,5 +1,5 @@
 import type { prodotto } from "~/types/prodotti";
-import type { validazioniFormVarianti } from "~/types/validazioni";
+import type { typeValidazioniFormVarianti } from "~/types/validazioni";
 import type { attributi } from "~/types/attributi";
 import { Link, useNavigate } from "@remix-run/react";
 import { useEffect, useState, useContext, type FC } from "react";
@@ -9,11 +9,11 @@ import { FormVarianti } from "./formsProdotti";
 
 type Props = {
   prodotto?: prodotto;
-  validazioni?: validazioniFormVarianti;
+  validazioni?: typeValidazioniFormVarianti;
   attributi?: attributi;
 };
 
-const ModaleAttributi: FC<Props> = () => {
+const ModaleVarianti: FC<Props> = () => {
   const backgroundAnimation = useAnimationControls();
   const schedaAnimation = useAnimationControls();
   const navigateTo = useNavigate();
@@ -36,7 +36,7 @@ const ModaleAttributi: FC<Props> = () => {
     }
 
     await animationsBundle();
-    navigateTo(`/prodotti/nuovo-prodotto`);
+    navigateTo("../");
   }
 
   useEffect(() => {
@@ -61,10 +61,11 @@ const ModaleAttributi: FC<Props> = () => {
         <FormVarianti
           attributi={contextData.data.newProdotto?.attributi}
           animateAndExit={animateAndExit}
+          setNewProdotto={contextData.data.setNewProdotto}
         />
       </motion.div>
     </>
   );
 };
 
-export default ModaleAttributi;
+export default ModaleVarianti;

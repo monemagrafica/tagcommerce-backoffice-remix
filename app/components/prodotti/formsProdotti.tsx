@@ -5,7 +5,7 @@ import type {
   typeValidazioniFormProdotto,
   typeValidazioniFormVarianti,
 } from "~/types/validazioni";
-import { Link } from "@remix-run/react";
+import { Link, useNavigate } from "@remix-run/react";
 import FooterFormsProdotti from "./footerFormsProdotti";
 import imgBtnAttributi from "../../assets/img/attributiBtn.svg";
 import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg";
@@ -52,7 +52,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({
     postNewProduct(data);
   };
 
-  console.log("attributi", newProdotto);
+  console.log("newProdotto", newProdotto);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -117,7 +117,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({
               spedizioni
             </Link>
           </section>
-          {!newProdotto.attributi && (
+          {!newProdotto.attributi?.length && (
             <section className="datiNumerici">
               <div className="form-control quantita">
                 <label>Quantita</label>
@@ -147,7 +147,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({
               </div>
             </section>
           )}
-          {newProdotto.attributi && (
+          {newProdotto.attributi?.length && (
             <div className="form-control">
               <Link to="./varianti" className="prodottoSchedaBtn">
                 <img
@@ -167,15 +167,26 @@ const FormProdotto: FC<PropsFormProdotto> = ({
   );
 };
 
-const FormVarianti: FC<PropsFormVarianti> = ({ attributi, animateAndExit }) => {
+const FormVarianti: FC<PropsFormVarianti> = ({
+  attributi,
+  animateAndExit,
+  setNewProdotto,
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
+    setNewProdotto((prev) => {
+      const updateVarianti = { ...prev.varianti, data };
+      const updatedObj = { ...prev, varianti: updateVarianti };
+      return updatedObj;
+    });
+    animateAndExit();
   };
 
   return (
@@ -183,10 +194,19 @@ const FormVarianti: FC<PropsFormVarianti> = ({ attributi, animateAndExit }) => {
       <div className="attributi">
         <div className="form-control attributo">
           <label htmlFor={attributi[0].nome}>{attributi[0].nome}</label>
-          <select name={attributi[0].nome} id={attributi[0].nome}>
+          <select
+            id={attributi[0].nome}
+            {...register(attributi[0].nome, {
+              required: true,
+            })}
+          >
             {attributi[0].lista.map((item) => {
               return (
-                <option key={item.id} value={item.id}>
+                <option
+                  key={item.id}
+                  value={item.id}
+                  {...register(item.id, {})}
+                >
                   {item.text}
                 </option>
               );
