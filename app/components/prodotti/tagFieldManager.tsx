@@ -1,15 +1,10 @@
-import {
-  useState,
-  useEffect,
-  useRef,
-  type FC,
-  type SetStateAction,
-  type Dispatch,
-} from "react";
+import { useState, type FC, type SetStateAction, type Dispatch } from "react";
 import { WithContext as ReactTags } from "react-tag-input";
 import { type FieldValues, useForm } from "react-hook-form";
+import { useNavigate } from "@remix-run/react";
+
 type Props = {
-  setFieldAttributes: Dispatch<SetStateAction<[]>>;
+  setNewProdotto: Dispatch<SetStateAction<[]>>;
 };
 const KeyCodes = {
   comma: 188,
@@ -18,13 +13,9 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-const TagFieldManager: FC<Props> = ({ setFieldAttributes }) => {
+const TagFieldManager: FC<Props> = ({ setNewProdotto }) => {
   const [tags, setTags] = useState([]);
-
-  useEffect(() => {
-    const attribute = { nome: "test", lista: tags };
-    setFieldAttributes([attribute]);
-  }, [tags]);
+  const navigateTo = useNavigate();
 
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
@@ -44,7 +35,18 @@ const TagFieldManager: FC<Props> = ({ setFieldAttributes }) => {
   } = useForm();
 
   const onSubmit = (data: FieldValues) => {
-    console.log(0);
+    setNewProdotto((prev) => {
+      const newAttributo = { nome: data.nome, lista: tags };
+      if (prev.attributi.length) {
+        const updateList = [...prev.attributi, newAttributo];
+        const updatedObj = { ...prev, attributi: updateList };
+        return updatedObj;
+      } else {
+        const updatedObj = { ...prev, attributi: [newAttributo] };
+        return updatedObj;
+      }
+    });
+    navigateTo(`/prodotti/nuovo-prodotto`);
   };
 
   return (
@@ -72,6 +74,12 @@ const TagFieldManager: FC<Props> = ({ setFieldAttributes }) => {
             inputFieldPosition="bottom"
             autocomplete
           />
+        </div>
+
+        <div className="form-control">
+          <button type="submit" className="buttonSalva">
+            Salva
+          </button>
         </div>
       </form>
     </div>

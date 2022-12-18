@@ -15,7 +15,6 @@ const ModaleAttributi: FC<Props> = () => {
   const backgroundAnimation = useAnimationControls();
   const schedaAnimation = useAnimationControls();
   const navigateTo = useNavigate();
-  const [tag, setTag] = useState([]);
   const contextData = useContext(ShareContext);
 
   async function animateAndExit() {
@@ -56,22 +55,7 @@ const ModaleAttributi: FC<Props> = () => {
         <header>
           <h2 className="nomeProdotto"> Dati Prodotto</h2>
         </header>
-        <TagFieldManager setFieldAttributes={setTag} />
-
-        <div className="form-control">
-          <button
-            onClick={() => {
-              contextData.data.setNewProdotto((prev) => {
-                const updatedObj = { ...prev, attributi: tag };
-                return updatedObj;
-              });
-              navigateTo(`/prodotti/nuovo-prodotto`);
-            }}
-            className="buttonSalva"
-          >
-            Salva
-          </button>
-        </div>
+        <TagFieldManager setNewProdotto={contextData.data.setNewProdotto} />
       </motion.div>
     </>
   );

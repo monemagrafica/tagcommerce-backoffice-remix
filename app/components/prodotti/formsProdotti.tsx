@@ -117,7 +117,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({
               spedizioni
             </Link>
           </section>
-          {!newProdotto.attributi?.length && (
+          {!newProdotto.attributi?.length ? (
             <section className="datiNumerici">
               <div className="form-control quantita">
                 <label>Quantita</label>
@@ -146,19 +146,20 @@ const FormProdotto: FC<PropsFormProdotto> = ({
                 )}
               </div>
             </section>
-          )}
-          {newProdotto.attributi?.length && (
-            <div className="form-control">
-              <Link to="./varianti" className="prodottoSchedaBtn">
-                <img
-                  src={imageVarianti}
-                  alt="icona varianti"
-                  width={23}
-                  height={20}
-                />{" "}
-                Varianti
-              </Link>
-            </div>
+          ) : (
+            newProdotto.attributi?.length && (
+              <div className="form-control">
+                <Link to="./varianti" className="prodottoSchedaBtn">
+                  <img
+                    src={imageVarianti}
+                    alt="icona varianti"
+                    width={23}
+                    height={20}
+                  />{" "}
+                  Varianti
+                </Link>
+              </div>
+            )
           )}
         </div>
       </div>
@@ -178,14 +179,14 @@ const FormVarianti: FC<PropsFormVarianti> = ({
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-
   const onSubmit = (data: FieldValues) => {
     setNewProdotto((prev) => {
-      const updateVarianti = { ...prev.varianti, data };
+      const updateVarianti = [...prev.varianti, data];
       const updatedObj = { ...prev, varianti: updateVarianti };
       return updatedObj;
     });
+    console.log("datavarianti", data);
+
     animateAndExit();
   };
 
@@ -202,11 +203,7 @@ const FormVarianti: FC<PropsFormVarianti> = ({
           >
             {attributi[0].lista.map((item) => {
               return (
-                <option
-                  key={item.id}
-                  value={item.id}
-                  {...register(item.id, {})}
-                >
+                <option key={item.id} value={item.id}>
                   {item.text}
                 </option>
               );

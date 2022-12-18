@@ -2,8 +2,6 @@ import { json } from "@remix-run/node";
 import { useLoaderData, useNavigate } from "@remix-run/react";
 import { type FC, useState, useEffect } from "react";
 import { Outlet } from "react-router";
-import { ShareContext } from "~/context/context";
-import { useContext } from "react";
 import { getProductsData } from "~/data/DataFunctions";
 import { motion } from "framer-motion";
 import style from "../../assets/css/prodotti.css";

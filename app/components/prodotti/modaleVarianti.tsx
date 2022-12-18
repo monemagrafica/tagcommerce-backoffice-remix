@@ -36,7 +36,7 @@ const ModaleVarianti: FC<Props> = () => {
     }
 
     await animationsBundle();
-    navigateTo("../");
+    navigateTo("../nuovo-prodotto");
   }
 
   useEffect(() => {
