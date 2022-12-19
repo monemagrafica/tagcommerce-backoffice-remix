@@ -166,19 +166,4 @@ const FormRegistration: FC<Props> = ({ userData, validazioneForm }) => {
   );
 };
 
-export async function loader() {
-  const products = await getUsersData();
-
-  if (!products || products.length === 0) {
-    throw json(
-      { message: "Users mockup non trovati" },
-      {
-        status: 404,
-        statusText: "users non trovati",
-      }
-    );
-  }
-  return products;
-}
-
 export { FormLogin, FormRegistration };

@@ -2,7 +2,7 @@ import { type Dispatch, type SetStateAction, type FC } from "react";
 import editBtn from "../../assets/img/edit.svg";
 import deleteBtn from "../../assets/img/delete.svg";
 import addIcon from "../../assets/img/add.svg";
-import { Link } from "@remix-run/react";
+import { Link, useNavigate } from "@remix-run/react";
 import { useContext } from "react";
 import { ShareContext } from "~/context/context";
 
@@ -10,9 +10,7 @@ type TypeDeleteButton = {
   actionFn: Dispatch<SetStateAction<string>>;
   id: string;
 };
-type TypeNewProduct = {
-  actionFn: Dispatch<SetStateAction<boolean>>;
-};
+
 type TypeGoToEditButton = {
   id: string;
 };
@@ -31,8 +29,9 @@ const DeleteButton: FC<TypeDeleteButton> = ({ actionFn, id }) => {
     </button>
   );
 };
-const NewProductButton: FC<TypeNewProduct> = ({ actionFn }) => {
+const NewProductButton: FC = () => {
   const sharedData = useContext(ShareContext);
+  const navigate = useNavigate();
   function handleClick() {
     sharedData.data.setNewProdotto({
       id: "",
@@ -43,7 +42,7 @@ const NewProductButton: FC<TypeNewProduct> = ({ actionFn }) => {
       attributi: [],
       varianti: [],
     });
-    actionFn(true);
+    navigate("nuovo-prodotto");
   }
   return (
     <button className="buttonNuovoProdotto" onClick={() => handleClick()}>

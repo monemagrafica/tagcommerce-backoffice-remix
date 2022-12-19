@@ -4,7 +4,7 @@ export type varianti = {
     attributi: [string];
     prezzo: string;
 }
-export type prodotto = {
+export type typeProdotto = {
     id: string;
     nome: string;
     prezzo: string;

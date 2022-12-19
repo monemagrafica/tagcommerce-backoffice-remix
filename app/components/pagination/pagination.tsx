@@ -32,7 +32,9 @@ const Items: FC<PropsItem> = ({ currentItems, offset }) => {
         currentItems.map((item) => (
           <li key={item.id}>
             <div className="productListName">{item.nome}</div>
-            <div className="productListVatiante">{item.varianti ?? "s"}</div>
+            <div className="productListVatiante">
+              {item.attributi.map((item) => item.nome) ?? "s"}
+            </div>
             <div className="productListPrice">{item.prezzo}€</div>
             <LazyLoadImage
               className="productListThumb"
