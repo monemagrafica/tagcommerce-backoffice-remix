@@ -1,16 +1,16 @@
-import { useNavigate } from "@remix-run/react";
-import { motion, useAnimationControls } from "framer-motion";
-import { useContext, type FC, useEffect } from "react";
-import TagFieldManager from "~/components/prodotti/tagFieldManager";
-import { ShareContext } from "~/context/context";
+import { useNavigate } from "@remix-run/react"
+import { motion, useAnimationControls } from "framer-motion"
+import { useContext, type FC, useEffect } from "react"
+import TagFieldManager from "~/components/prodotti/tagFieldManager"
+import { ShareContext } from "~/context/context"
 
-type Props = {};
+type Props = {}
 
 const NewAttributes: FC<Props> = () => {
-  const backgroundAnimation = useAnimationControls();
-  const schedaAnimation = useAnimationControls();
-  const navigateTo = useNavigate();
-  const contextData = useContext(ShareContext);
+  const backgroundAnimation = useAnimationControls()
+  const schedaAnimation = useAnimationControls()
+  const navigateTo = useNavigate()
+  const contextData = useContext(ShareContext)
 
   async function animateAndExit() {
     async function animationsBundle() {
@@ -24,18 +24,18 @@ const NewAttributes: FC<Props> = () => {
           y: 50,
           transition: { duration: 0.3 },
         }),
-      ]);
+      ])
     }
-    await animationsBundle();
-    navigateTo(`/prodotti/nuovo-prodotto`);
+    await animationsBundle()
+    navigateTo(`/prodotti/nuovo-prodotto`)
   }
 
   useEffect(() => {
-    backgroundAnimation.set({ opacity: 0 });
-    backgroundAnimation.start({ opacity: 1 });
-    schedaAnimation.set({ opacity: 0, y: 0, x: "-50%" });
-    schedaAnimation.start({ opacity: 1, y: "-50%", x: "-50%" });
-  }, []);
+    backgroundAnimation.set({ opacity: 0 })
+    backgroundAnimation.start({ opacity: 1 })
+    schedaAnimation.set({ opacity: 0, y: 0, x: "-50%" })
+    schedaAnimation.start({ opacity: 1, y: "-50%", x: "-50%" })
+  }, [])
 
   return (
     <>
@@ -47,12 +47,15 @@ const NewAttributes: FC<Props> = () => {
 
       <motion.div className="wrapperModaleProdotto" animate={schedaAnimation}>
         <header>
-          <h2 className="nomeProdotto"> Dati Prodotto</h2>
+          <h2 className="nomeProdotto">Nuovo Attributo</h2>
         </header>
-        <TagFieldManager setNewProdotto={contextData.data.setNewProdotto} />
+        <TagFieldManager
+          animateAndExit={animateAndExit}
+          setNewProdotto={contextData.data.setNewProdotto}
+        />
       </motion.div>
     </>
-  );
-};
+  )
+}
 
-export default NewAttributes;
+export default NewAttributes

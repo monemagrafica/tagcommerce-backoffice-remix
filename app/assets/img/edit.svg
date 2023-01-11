@@ -1,9 +1,11 @@
-<svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="edit">
-<rect id="Rectangle 14" width="27" height="27" rx="4" fill="#FFE16C"/>
-<g id="Group 4">
-<path id="Rectangle 15" d="M18.7886 5.70711C19.1791 5.31658 19.8123 5.31658 20.2028 5.70711L21.617 7.12132C22.0075 7.51184 22.0075 8.14501 21.617 8.53553L11.7175 18.435L8.8891 15.6066L18.7886 5.70711Z" fill="#2F2F2F"/>
-<path id="Rectangle 16" d="M9.84424 20.3083C9.68367 20.4689 9.47324 20.57 9.24756 20.5951L7.65657 20.7719C7.01966 20.8426 6.48149 20.3045 6.55226 19.6676L6.72903 18.0766C6.75411 17.8509 6.85525 17.6404 7.01581 17.4799L8.18198 16.3137L11.0104 19.1421L9.84424 20.3083Z" fill="#2F2F2F"/>
-</g>
-</g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="edit">
+        <path id="Rectangle-14" serif:id="Rectangle 14" d="M27,4C27,1.792 25.208,0 23,0L4,0C1.792,0 0,1.792 0,4L0,23C0,25.208 1.792,27 4,27L23,27C25.208,27 27,25.208 27,23L27,4Z" style="fill:rgb(255,204,11);"/>
+        <g id="Group-4" serif:id="Group 4">
+            <path id="Rectangle-15" serif:id="Rectangle 15" d="M18.789,5.707C19.179,5.317 19.812,5.317 20.203,5.707L21.617,7.121C22.008,7.512 22.008,8.145 21.617,8.536L11.718,18.435L8.889,15.607L18.789,5.707Z" style="fill:rgb(47,47,47);fill-rule:nonzero;"/>
+            <path id="Rectangle-16" serif:id="Rectangle 16" d="M9.844,20.308C9.684,20.469 9.473,20.57 9.248,20.595L7.657,20.772C7.02,20.843 6.481,20.305 6.552,19.668L6.729,18.077C6.754,17.851 6.855,17.64 7.016,17.48L8.182,16.314L11.01,19.142L9.844,20.308Z" style="fill:rgb(47,47,47);fill-rule:nonzero;"/>
+        </g>
+    </g>
 </svg>

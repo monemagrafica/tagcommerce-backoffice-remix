@@ -87,7 +87,7 @@ h2.nomeProdotto {
 
 .main-logo {
     width: 300px;
-    background-color: #f3edd6;
+    background-color: #f1ecdb;
     padding: 1rem;
 }
 
@@ -162,12 +162,17 @@ button,
     background-color: transparent;
     padding: 0;
     cursor: pointer;
-    margin: 5px;
+}
+
+.gotoeditButton, .deleteButton {
+    height: 27px;
+    position: relative;
+    display: block;
 }
 
 button.buttonNuovoProdotto {
-    background-color: #ffcc0b;
-    padding: 10px 13px;
+    background-color: #ffdd5d;
+    padding: 17px 13px;
     border-radius: 7px;
     font-size: 14px;
     font-weight: bold;
@@ -176,7 +181,7 @@ button.buttonNuovoProdotto {
 }
 
 button.buttonSalva {
-    background-color: #ffcc0b;
+    background-color: #ffdd5d;
     padding: 1rem;
     color: black;
     font-weight: bold;
@@ -186,7 +191,8 @@ button.buttonSalva {
 
 button.buttonNuovoProdotto img {
     vertical-align: middle;
-    max-width: 17px;
+    width: 16px;
+    height: 16px;
     margin-right: 2px;
 }
 
@@ -221,6 +227,10 @@ button.buttonNuovoProdotto img {
 
 .form-control label {
     display: block;
-    font-family: "Zilla Slab", serif;
+    font-family: Zilla Slab,serif;
     color: #6f3e00;
+    font-weight: bold;
+    font-size: .9rem;
+    letter-spacing: .5px;
+    margin-bottom: 5px;
 }

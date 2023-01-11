@@ -1,15 +1,15 @@
-import { type FC, useState } from "react";
-import ReactPaginate from "react-paginate";
-import type { prodotto } from "~/types/prodotti";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { DeleteButton, GoToEditButton } from "../mainUi/buttons";
-import { motion } from "framer-motion";
+import { type FC, useState } from "react"
+import ReactPaginate from "react-paginate"
+import type { prodotto } from "~/types/prodotti"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/blur.css"
+import { DeleteButton, GoToEditButton } from "../mainUi/buttons"
+import { motion } from "framer-motion"
 
 type PropsItem = {
-  currentItems: [prodotto];
-  offset: number;
-};
+  currentItems: [prodotto]
+  offset: number
+}
 
 const container = {
   hidden: { opacity: 0, y: 30, transition: { duration: 0.5 } },
@@ -18,11 +18,12 @@ const container = {
     y: 0,
     transition: { duration: 0.5 },
   },
-};
+}
 
 const Items: FC<PropsItem> = ({ currentItems, offset }) => {
   return (
     <motion.ul
+      className="listaProdotti"
       variants={container}
       initial="hidden"
       animate="show"
@@ -53,30 +54,30 @@ const Items: FC<PropsItem> = ({ currentItems, offset }) => {
           </li>
         ))}
     </motion.ul>
-  );
-};
+  )
+}
 
 type PropsPagination = {
-  prodotti: prodotto[];
-  itemsPerPage: number;
-};
+  prodotti: prodotto[]
+  itemsPerPage: number
+}
 const Pagination: FC<PropsPagination> = ({ itemsPerPage, prodotti }) => {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
-  const [itemOffset, setItemOffset] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0)
 
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = [...prodotti.slice(itemOffset, endOffset)];
-  const pageCount = Math.ceil(prodotti.length / itemsPerPage);
+  const endOffset = itemOffset + itemsPerPage
+  const currentItems = [...prodotti.slice(itemOffset, endOffset)]
+  const pageCount = Math.ceil(prodotti.length / itemsPerPage)
 
   // Invoke when user click to request another page.
   const handlePageClick = (event: { selected: number }) => {
-    const newOffset = (event.selected * itemsPerPage) % prodotti.length;
-    setItemOffset(newOffset);
-  };
+    const newOffset = (event.selected * itemsPerPage) % prodotti.length
+    setItemOffset(newOffset)
+  }
 
   return (
     <>
@@ -102,7 +103,7 @@ const Pagination: FC<PropsPagination> = ({ itemsPerPage, prodotti }) => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination
