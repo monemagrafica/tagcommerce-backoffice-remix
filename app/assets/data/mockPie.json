@@ -1,0 +1,32 @@
+[
+    {
+        "id": "go",
+        "label": "go",
+        "value": 202,
+        "color": "hsl(5, 70%, 50%)"
+    },
+    {
+        "id": "make",
+        "label": "make",
+        "value": 145,
+        "color": "hsl(19, 70%, 50%)"
+    },
+    {
+        "id": "css",
+        "label": "css",
+        "value": 51,
+        "color": "hsl(99, 70%, 50%)"
+    },
+    {
+        "id": "sass",
+        "label": "sass",
+        "value": 592,
+        "color": "hsl(206, 70%, 50%)"
+    },
+    {
+        "id": "c",
+        "label": "c",
+        "value": 598,
+        "color": "hsl(149, 70%, 50%)"
+    }
+]

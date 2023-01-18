@@ -1,0 +1,63 @@
+.wrapperSingle {
+  border-radius: 6%;
+  overflow: hidden;
+}
+.wrapperMap {
+  height: 400px;
+  grid-column: span 3;
+}
+.wrapperPie {
+  height: 400px;
+  grid-column: span 2;
+}
+.wrapperTextData.span1 {
+  grid-column: span 2;
+}
+.wrapperTextData.span2 {
+  grid-column: span 2;
+}
+.wrapperTextData.span3 {
+  grid-column: span 3;
+}
+.wrapperTextData {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.wrapperTextData ul li {
+  margin: 1rem 0;
+}
+.wrapperTextData .dataText {
+  font-size: 22px;
+  color: #6f3e00;
+}
+.wrapperTextData .dataValue {
+  font-size: 28px;
+  margin: 0;
+  line-height: 1;
+}
+.wrapperTextData.messaggi ul {
+  margin-top: 0;
+}
+.wrapperTextData.messaggi ul li {
+  margin-top: 0;
+}
+.wrapperTextData.messaggi ul li .messaggi__text {
+  font-size: 1rem;
+}
+.wrapperTextData.messaggi h3 {
+  color: #6f3e00;
+  margin-bottom: 0.5rem;
+}
+.wrapperMainDash {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 100%;
+  grid-column-gap: 2rem;
+  font-size: 20px;
+  font-family: Zilla Slab, serif;
+}
+.wrapperBar {
+  height: 400px;
+  grid-column: span 2;
+}

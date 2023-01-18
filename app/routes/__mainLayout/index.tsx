@@ -30,7 +30,7 @@ export default function Index() {
         <div className="wrapperSingle wrapperMap">
           <MyResponsiveGeoMap arrayMap={prodotti[1]} />
         </div>
-        <div className="wrapperTextData">
+        <div className="wrapperTextData span2">
           <ul>
             <li>
               {" "}
@@ -42,6 +42,35 @@ export default function Index() {
               <div className="dataText">Prodotto più venduto</div>{" "}
               <div className="dataValue">Olio extravergine di scimmia</div>{" "}
             </li>
+          </ul>
+        </div>
+        <div className="wrapperTextData span2">
+          <ul>
+            <li>
+              {" "}
+              <div className="dataText">Ordini In sospeso</div>{" "}
+              <div className="dataValue">10</div>{" "}
+            </li>
+            <li>
+              {" "}
+              <div className="dataText">Ordini Elaborati</div>{" "}
+              <div className="dataValue">123</div>{" "}
+            </li>
+          </ul>
+        </div>
+        <div className="wrapperTextData messaggi span2">
+          <h3>Messaggi</h3>
+          <ul>
+            <li>
+              <div className="messaggi__text">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
+                neque commodi officia quas placeat recusandae, saepe aliquid,
+                architecto laborum velit fugiat est, vitae molestias quia in cum
+                magni aspernatur veniam.
+              </div>
+              <div className="messaggi__mittente">Paolo Rossi</div>
+            </li>
+            <li></li>
           </ul>
         </div>
       </div>
