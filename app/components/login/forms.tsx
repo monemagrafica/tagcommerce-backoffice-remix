@@ -4,7 +4,7 @@ import { useState, useEffect, type FC } from "react";
 import type { user } from "~/types/user";
 import { useNavigate } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import { getUsersData, registerUsers } from "~/data/DataFunctions";
+import { getUsersData, registerUsers } from "~/dataold/DataFunctions";
 
 type Props = {
   userData: [user];

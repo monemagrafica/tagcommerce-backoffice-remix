@@ -9,9 +9,10 @@ import { Link } from "@remix-run/react";
 import FooterFormsProdotti from "./footerFormsProdotti";
 import imgBtnAttributi from "../../assets/img/attributiBtn.svg";
 import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg";
-import { postNewProduct } from "~/data/DataFunctions";
+import { postNewProduct } from "~/dataold/DataFunctions";
 import imageVarianti from "../../assets/img/varianti.svg";
 import type { attributi } from "~/types/attributi";
+import { typeProdotto } from "~/types/prodotti";
 
 const validazioniFormProdotto = {
   nome: "Nome non presente",
@@ -27,14 +28,14 @@ const validazioniFormVarianti = {
 
 type PropsFormProdotto = {
   validazioneForm: typeValidazioniFormProdotto;
-  prodotto: prodotto;
+  prodotto: typeProdotto;
   animateAndExit: () => void;
 };
 
 type PropsFormVarianti = {
   attributi: attributi;
   validazioneForm: typeValidazioniFormVarianti;
-  newProdotto: prodotto;
+  newProdotto: typeProdotto;
   animateAndExit: () => void;
 };
 
@@ -45,7 +46,25 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: FieldValues) => {};
+  console.log("prodotto", prodotto);
+
+  const onSubmit = (data: FieldValues) => {
+    console.log("test submit");
+    animateAndExit();
+  };
+
+  function defaultValueInput(
+    prodotto: typeProdotto,
+    nomeCampo: keyof typeProdotto
+  ) {
+    if (!prodotto[nomeCampo]) {
+      console.log("errore");
+
+      return;
+    }
+    return prodotto[nomeCampo];
+  }
+  console.log(defaultValueInput(prodotto, "nome"));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,6 +76,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
             type="text"
             {...register("nome", {
               required: true,
+              value: defaultValueInput(prodotto, "nome"),
             })}
           />
           {errors.nome && errors.nome.type === "required" && (
@@ -70,6 +90,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
               rows={10}
               {...register("descrizione", {
                 required: true,
+                value: defaultValueInput(prodotto, "description"),
               })}
             />
             {errors.descrizione && errors.descrizione.type === "required" && (
@@ -114,6 +135,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
                   {...register("quantita", {
                     required: true,
                     minLength: 1,
+                    value: defaultValueInput(prodotto, "quantita"),
                   })}
                 />
                 {errors.quantita && errors.quantita.type === "required" && (
@@ -127,6 +149,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
                   {...register("prezzo", {
                     required: true,
                     minLength: 1,
+                    value: defaultValueInput(prodotto, "prezzo"),
                   })}
                 />
                 {errors.prezzo && errors.prezzo.type === "required" && (

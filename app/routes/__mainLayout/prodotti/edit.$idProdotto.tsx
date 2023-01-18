@@ -1,11 +1,9 @@
 import { useEffect, type FC } from "react";
-import { useLoaderData, useNavigate, useParams } from "@remix-run/react";
-import ModaleProdotto from "~/components/prodotti/modaleProdotto";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 import { type json, type LoaderArgs } from "@remix-run/node";
-import { getSingleProductData } from "~/data/DataFunctions";
-import type { typeProdotto } from "~/types/prodotti";
 import { motion, useAnimationControls } from "framer-motion";
 import { FormProdotto } from "~/components/prodotti/formsProdotti";
+import { getSingleProductData } from "~/dataold/DataFunctions";
 
 type Props = {};
 const Edit: FC<Props> = (props: Props) => {

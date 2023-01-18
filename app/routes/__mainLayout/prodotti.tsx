@@ -1,17 +1,17 @@
-import { json } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
-import { type FC } from "react"
-import { Outlet } from "react-router"
-import { getProductsData } from "~/data/DataFunctions"
-import { motion } from "framer-motion"
-import style from "../../assets/css/prodotti.css"
-import Pagination from "~/components/pagination/pagination"
-import { NewProductButton } from "~/components/mainUi/buttons"
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { type FC } from "react";
+import { Outlet } from "react-router";
+import { getProductsData } from "~/dataold/DataFunctions";
+import { motion } from "framer-motion";
+import style from "../../assets/css/prodotti.css";
+import Pagination from "~/components/pagination/pagination";
+import { NewProductButton } from "~/components/mainUi/buttons";
 
 const ProdottiLayout: FC = () => {
-  const prodotti = useLoaderData()
+  const prodotti = useLoaderData();
 
-  console.log("prodotti", prodotti)
+  console.log("prodotti", prodotti);
 
   return (
     <>
@@ -31,14 +31,14 @@ const ProdottiLayout: FC = () => {
         </div>
       </motion.div>
     </>
-  )
-}
+  );
+};
 
-export default ProdottiLayout
+export default ProdottiLayout;
 
 export async function loader() {
-  let products = await getProductsData()
-  products.reverse()
+  let products = await getProductsData();
+  products.reverse();
   if (!products) {
     throw json(
       { message: "Prodotti mockup non trovati" },
@@ -46,11 +46,11 @@ export async function loader() {
         status: 404,
         statusText: "Prodotti non trovati",
       }
-    )
+    );
   }
-  return products
+  return products;
 }
 
 export function links() {
-  return [{ rel: "stylesheet", href: style }]
+  return [{ rel: "stylesheet", href: style }];
 }

@@ -9,6 +9,7 @@ export type typeProdotto = {
     nome: string;
     prezzo: string;
     description: string;
+    quantita: string;
     image: string;
     attributi?: attributi;
     varianti?: [varianti]

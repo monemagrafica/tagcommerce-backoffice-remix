@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { FormRegistration } from "~/components/login/forms";
-import { getUsersData } from "~/data/DataFunctions";
+import { getUsersData } from "~/dataold/DataFunctions";
 
 const Registration = () => {
   const userData = useLoaderData<typeof loader>();

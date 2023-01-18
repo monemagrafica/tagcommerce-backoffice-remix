@@ -16,7 +16,9 @@ const FooterFormsProdotti: FC<Props> = ({ animateAndExit }) => {
       />
 
       <div className="form-control">
-        <button className="buttonSalva">Salva</button>
+        <button type="submit" className="buttonSalva">
+          Salva
+        </button>
       </div>
     </section>
   );
