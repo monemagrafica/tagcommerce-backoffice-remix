@@ -13,7 +13,7 @@ import { postNewProduct } from "~/dataold/DataFunctions";
 import imageVarianti from "../../assets/img/varianti.svg";
 import type { attributi } from "~/types/attributi";
 import { typeProdotto } from "~/types/prodotti";
-
+import LoaderImmagini from "./loaderImmagini";
 const validazioniFormProdotto = {
   nome: "Nome non presente",
   descrizione: "Descrizione non presente",
@@ -87,7 +87,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
           <div className="form-control descrizione">
             <label>Descrizione</label>
             <textarea
-              rows={10}
+              rows={12}
               {...register("descrizione", {
                 required: true,
                 value: defaultValueInput(prodotto, "description"),
@@ -98,11 +98,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
             )}
           </div>
           <div className="form-control immagine">
-            <label>Immagine</label>
-            <input type="file" {...register("media")} />
-            {errors.media && errors.media.type === "required" && (
-              <p className="errorMsg">{validazioniFormProdotto.media}</p>
-            )}
+            <LoaderImmagini maxNumber={4} />
           </div>
         </section>
         <div className="wrapperMidSection">

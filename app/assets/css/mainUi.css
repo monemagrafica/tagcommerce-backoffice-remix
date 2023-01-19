@@ -49,10 +49,37 @@ input {
     padding: 10px;
 }
 
-input[type="file"] {
-    background-color: #dbd4bb;
-    padding: 1rem;
-    height: 88%;
+input[type=file] {
+    color: transparent;
+    background: #ffdd5d;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+input[type=file]:before {
+    content: "+";
+    color: #000;
+    display: inline-block;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    line-height: 35px;
+    height: 40px;
+}
+
+input[type="file"]:active {
+    outline: 0;
 }
 
 textarea {
