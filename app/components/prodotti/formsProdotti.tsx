@@ -13,7 +13,7 @@ import { postNewProduct } from "~/dataold/DataFunctions";
 import imageVarianti from "../../assets/img/varianti.svg";
 import type { attributi } from "~/types/attributi";
 import { typeProdotto } from "~/types/prodotti";
-import LoaderImmagini from "./loaderImmagini";
+
 const validazioniFormProdotto = {
   nome: "Nome non presente",
   descrizione: "Descrizione non presente",
@@ -98,7 +98,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
             )}
           </div>
           <div className="form-control immagine">
-            <LoaderImmagini maxNumber={4} />
+            gsdfgsdfffffff
           </div>
         </section>
         <div className="wrapperMidSection">

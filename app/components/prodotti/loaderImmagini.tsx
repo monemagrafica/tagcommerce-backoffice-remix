@@ -15,24 +15,11 @@ function LoaderImmagini({ maxNumber }: Props) {
     useEffect(() => {
 
         if (images.length < 1) { setImageURL([]) }
-
-
         createImageArray(images)
-
-
-
-
     }, [images])
 
     useEffect(() => {
-        const imageToDeleteFromArray = imageURL?.findIndex((item: TypeImageObject) => item.id === deletingImage)
-        const updateImagesArray = images.filter((item, index) => {
-            return index !== imageToDeleteFromArray
-
-        })
-        console.log('updateDelete', updateImagesArray);
-
-        setImages(updateImagesArray)
+        deleteImageFromArray()
     }, [deletingImage])
 
 
@@ -56,13 +43,14 @@ function LoaderImmagini({ maxNumber }: Props) {
         setImageURL(newImageUrls)
     }
 
-    function deleteImageFromArray(imageId: string, arrayImage: [TypeImageObject]) {
-        if (!arrayImage.length) { return }
-
-        const updatedImageArray: [] = arrayImage.filter((item) => imageId !== item.id)
-        setImages(updatedImageArray)
+    function deleteImageFromArray() {
+        const imageToDeleteFromArray = imageURL?.findIndex((item: TypeImageObject) => item.id === deletingImage)
+        const updateImagesArray = images.filter((item, index) => {
+            return index !== imageToDeleteFromArray
+        })
+        setImages(updateImagesArray)
     }
-    console.log('imageUrls', imageURL);
+
 
     return (
         <><div className="wrapperImageHeader">
