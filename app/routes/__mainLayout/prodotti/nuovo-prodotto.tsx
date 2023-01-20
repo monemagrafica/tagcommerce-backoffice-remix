@@ -1,5 +1,5 @@
 import { useEffect, type FC } from "react";
-import { useLoaderData, useNavigate } from "@remix-run/react";
+import { Outlet, useLoaderData, useNavigate } from "@remix-run/react";
 
 import { json } from "@remix-run/node";
 import { getProductsData } from "~/dataold/DataFunctions";
@@ -48,13 +48,15 @@ const NuovoProdotto: FC<Props> = (props: Props) => {
 
   return (
     <>
+    
       <motion.div
         className="backgroundModale"
         animate={backgroundAnimation}
         onClick={() => animateAndExit()}
       ></motion.div>
-      {console.log("tempdatat", shareData.tempData)}
+
       <motion.div className="wrapperModaleProdotto" animate={schedaAnimation}>
+      <Outlet />
         <header>
           <h2 className="nomeProdotto"> Nuovo Prodotto</h2>
         </header>
