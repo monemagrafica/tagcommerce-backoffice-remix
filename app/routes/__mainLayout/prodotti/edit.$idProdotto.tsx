@@ -1,5 +1,5 @@
 import { useEffect, type FC } from "react";
-import { useLoaderData, useNavigate } from "@remix-run/react";
+import { Link, Outlet, useLoaderData, useNavigate } from "@remix-run/react";
 import { type json, type LoaderArgs } from "@remix-run/node";
 import { motion, useAnimationControls } from "framer-motion";
 import { FormProdotto } from "~/components/prodotti/formsProdotti";
@@ -48,6 +48,7 @@ const Edit: FC<Props> = (props: Props) => {
 
       <motion.div className="wrapperModaleProdotto" animate={schedaAnimation}>
         <header>
+          <Outlet />
           <h2 className="nomeProdotto"> Dati Prodotto</h2>
         </header>
         <FormProdotto
