@@ -27,7 +27,7 @@ const NewAttributes: FC<Props> = () => {
       ]);
     }
     await animationsBundle();
-    navigateTo(`..`);
+    navigateTo("..");
   }
 
   useEffect(() => {

@@ -1,55 +1,54 @@
-import { useState, type FC, type SetStateAction, type Dispatch } from "react"
-import { WithContext as ReactTags } from "react-tag-input"
-import { type FieldValues, useForm } from "react-hook-form"
-import { useNavigate } from "@remix-run/react"
-import backBtn from "../../assets/img/backBtn.svg"
+import { useState, type FC, type SetStateAction, type Dispatch } from "react";
+import { WithContext as ReactTags } from "react-tag-input";
+import { type FieldValues, useForm } from "react-hook-form";
+import { useNavigate } from "@remix-run/react";
+import backBtn from "../../assets/img/backBtn.svg";
 type Props = {
-  setNewProdotto: Dispatch<SetStateAction<[]>>
-  animateAndExit: any
-  isNewProduct: boolean
-}
+  setNewProdotto: Dispatch<SetStateAction<[]>>;
+  animateAndExit: any;
+};
 const KeyCodes = {
   comma: 188,
   enter: 13,
-}
+};
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter]
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-const TagFieldManager: FC<Props> = ({ setNewProdotto, animateAndExit, isNewProduct }) => {
-  const [tags, setTags] = useState([])
-  const navigateTo = useNavigate()
+const TagFieldManager: FC<Props> = ({ setNewProdotto, animateAndExit }) => {
+  const [tags, setTags] = useState([]);
+  const navigateTo = useNavigate();
 
   const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i))
-  }
+    setTags(tags.filter((tag, index) => index !== i));
+  };
 
   const handleAddition = (tag) => {
-    setTags([...tags, tag])
-  }
+    setTags([...tags, tag]);
+  };
   const handleTagClick = (index) => {
-    console.log("The tag at index " + index + " was clicked")
-  }
+    console.log("The tag at index " + index + " was clicked");
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data: FieldValues) => {
     setNewProdotto((prev) => {
-      const newAttributo = { nome: data.nome, lista: tags }
-      if (prev.attributi.length) {
-        const updateList = [...prev.attributi, newAttributo]
-        const updatedObj = { ...prev, attributi: updateList }
-        return updatedObj
+      const newAttributo = { nome: data.nome, lista: tags };
+      if (prev?.attributi) {
+        const updateList = [...prev.attributi, newAttributo];
+        const updatedObj = { ...prev, attributi: updateList };
+        return updatedObj;
       } else {
-        const updatedObj = { ...prev, attributi: [newAttributo] }
-        return updatedObj
+        const updatedObj = { ...prev, attributi: [newAttributo] };
+        return updatedObj;
       }
-    })
-    navigateTo("..")
-  }
+    });
+    animateAndExit();
+  };
 
   return (
     <div className="formAttributo">
@@ -101,6 +100,6 @@ const TagFieldManager: FC<Props> = ({ setNewProdotto, animateAndExit, isNewProdu
         </section>
       </form>
     </div>
-  )
-}
-export default TagFieldManager
+  );
+};
+export default TagFieldManager;

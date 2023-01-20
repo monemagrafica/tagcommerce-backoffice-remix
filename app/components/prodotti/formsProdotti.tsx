@@ -99,7 +99,7 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
             )}
           </div>
           <div className="form-control immagine">
-
+            <LoaderImmagini maxNumber={4} />
           </div>
         </section>
         <div className="wrapperMidSection">
@@ -243,16 +243,7 @@ const FormNewProdotto: FC<PropsFormProdotto> = ({
             )}
           </div>
           <div className="form-control immagine">
-            <label>Immagine</label>
-            <input
-              type="file"
-              {...register("media", {
-                required: false,
-              })}
-            />
-            {errors.media && errors.media.type === "required" && (
-              <p className="errorMsg">{validazioniFormProdotto.media}</p>
-            )}
+            <LoaderImmagini maxNumber={4} />
           </div>
         </section>
         <div className="wrapperMidSection">
