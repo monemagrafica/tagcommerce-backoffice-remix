@@ -8,14 +8,16 @@ type TypeImageObject = {
 }
 function LoaderImmagini({ maxNumber }: Props) {
 
-    const [images, setImages] = useState([])
-    const [imageURL, setImageURL] = useState<[] | undefined>([])
+    const [images, setImages] = useState<File[]>([])
+    const [imageURL, setImageURL] = useState<[]>([])
     const [deletingImage, setDeletingImage] = useState<string>('')
 
     useEffect(() => {
 
-        if (images.length < 1) { setImageURL([]) }
-        createImageArray(images)
+        if (!images.length) {
+            setImageURL([])
+        } else { createImageArray(images) }
+
     }, [images])
 
     useEffect(() => {
@@ -23,16 +25,19 @@ function LoaderImmagini({ maxNumber }: Props) {
     }, [deletingImage])
 
 
-    function onImageChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setImages((prev) => [...prev, e.target.files[0]])
+    function onImageChange(e: Event | undefined) {
+        const target = e?.target as HTMLInputElement
+
+        setImages((prev) => (prev && target.files) ? [...prev, target.files[0]] : [])
+
     }
 
-    function createImageArray(images) {
+    function createImageArray(imageArray) {
 
-        if (!images.length) { return }
+        if (!imageArray.length) { return }
 
         const newImageUrls: TypeImageObject[] = []
-        images.forEach((image, index) => {
+        imageArray.forEach((image, index) => {
             const imageObject: TypeImageObject = {
                 id: uuidv4(),
                 url: URL.createObjectURL(image)
@@ -58,13 +63,13 @@ function LoaderImmagini({ maxNumber }: Props) {
             <input multiple id="immagine" type="file" accept="image/*" onChange={onImageChange} />
         </div>
             <div className="wrapperImage">
-                {imageURL.map((item: TypeImageObject) => {
+                {imageURL?.length ? imageURL.map((item: TypeImageObject) => {
                     return (
                         <div key={item.id} className='wrapperSingleImage'>
                             <img src={item.url} alt="imagePreview" width={40} height={40} />
                             <span onClick={() => setDeletingImage(item.id)}>x</span>
                         </div>)
-                })}
+                }) : 'nessuna immagine'}
             </div>
         </>
     )

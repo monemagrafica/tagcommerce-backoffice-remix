@@ -27,7 +27,7 @@ const NewAttributes: FC<Props> = () => {
       ])
     }
     await animationsBundle()
-    navigateTo(`/prodotti/nuovo-prodotto`)
+    navigateTo(`..`)
   }
 
   useEffect(() => {

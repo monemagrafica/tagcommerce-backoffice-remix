@@ -6,6 +6,7 @@ import backBtn from "../../assets/img/backBtn.svg"
 type Props = {
   setNewProdotto: Dispatch<SetStateAction<[]>>
   animateAndExit: any
+  isNewProduct: boolean
 }
 const KeyCodes = {
   comma: 188,
@@ -14,7 +15,7 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter]
 
-const TagFieldManager: FC<Props> = ({ setNewProdotto, animateAndExit }) => {
+const TagFieldManager: FC<Props> = ({ setNewProdotto, animateAndExit, isNewProduct }) => {
   const [tags, setTags] = useState([])
   const navigateTo = useNavigate()
 
@@ -47,7 +48,7 @@ const TagFieldManager: FC<Props> = ({ setNewProdotto, animateAndExit }) => {
         return updatedObj
       }
     })
-    navigateTo(`/prodotti/nuovo-prodotto`)
+    navigateTo("..")
   }
 
   return (
