@@ -47,7 +47,6 @@ const TagFieldManager: FC<Props> = ({ setNewProdotto, animateAndExit }) => {
         return updatedObj;
       }
     });
-    animateAndExit();
   };
 
   return (

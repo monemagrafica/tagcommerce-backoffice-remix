@@ -29,7 +29,7 @@ const NewAttributes: FC<Props> = () => {
     }
 
     await animationsBundle();
-    navigateTo("../nuovo-prodotto");
+    navigateTo("..");
   }
 
   useEffect(() => {
