@@ -4,13 +4,25 @@ import { TypeImageObject } from "~/types/prodotti";
 
 type Props = {
   maxNumber: number;
-  setImagesFromLoader: Dispatch<SetStateAction<{}[] | undefined>>;
+  immaginiPresenti?: TypeImageObject[];
+  setImagesFromLoader?: Dispatch<SetStateAction<{}[] | undefined>>;
 };
 
-function LoaderImmagini({ maxNumber, setImagesFromLoader }: Props) {
+function LoaderImmagini({
+  maxNumber,
+  setImagesFromLoader,
+  immaginiPresenti,
+}: Props) {
   const [images, setImages] = useState<File[]>([]);
   const [imageURL, setImageURL] = useState<{}[]>([]);
   const [deletingImage, setDeletingImage] = useState<string>("");
+
+  console.log("fra", imageURL);
+
+  //NOTE - setta l'array da inviare al context
+  useEffect(() => {
+    setImagesFromLoader && setImagesFromLoader(imageURL);
+  }, [imageURL]);
 
   useEffect(() => {
     if (!images.length) {
@@ -26,15 +38,13 @@ function LoaderImmagini({ maxNumber, setImagesFromLoader }: Props) {
   }, [deletingImage]);
 
   useEffect(() => {
-    setImagesFromLoader(imageURL);
+    setImagesFromLoader && setImagesFromLoader(imageURL);
   }, [imageURL]);
 
+  //NOTE - all'inserimento dell'immagine aggiorna l'array con la stringa per costruire l'oggetto immagine
   function onImageChange(e: Event | undefined) {
     const target = e?.target as HTMLInputElement;
-    console.log("immagini", imageURL);
     setImages((prev) => {
-      console.log("prev", prev);
-
       return target.files ? [...prev, target.files[0]] : [];
     });
   }

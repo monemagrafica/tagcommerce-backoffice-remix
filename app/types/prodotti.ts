@@ -10,7 +10,7 @@ export type typeProdotto = {
     prezzo: string;
     description: string;
     quantita: string;
-    image: string;
+    immagini: [];
     attributi?: attributi;
     varianti?: [varianti]
 }

@@ -1,5 +1,5 @@
 import { type FieldValues, useForm } from "react-hook-form";
-import { useState, type FC } from "react";
+import { useState, type FC, SetStateAction, Dispatch } from "react";
 
 import type {
   typeValidazioniFormProdotto,
@@ -48,11 +48,13 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
   } = useForm();
 
   console.log("prodotto", prodotto);
+  const [imagesFromLoader, setImagesFromLoader] = useState<{}[]>();
 
   const onSubmit = (data: FieldValues) => {
     console.log("test submit");
     animateAndExit();
   };
+  console.log("imagesFromLoader", imagesFromLoader);
 
   function defaultValueInput(
     prodotto: typeProdotto,
@@ -60,7 +62,6 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
   ) {
     if (!prodotto[nomeCampo]) {
       console.log("errore");
-
       return;
     }
     return prodotto[nomeCampo];
@@ -99,7 +100,11 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
             )}
           </div>
           <div className="form-control immagine">
-            <LoaderImmagini maxNumber={4} />
+            <LoaderImmagini
+              maxNumber={4}
+              immaginiPresenti={prodotto.immagini}
+              setImagesFromLoader={setImagesFromLoader}
+            />
           </div>
         </section>
         <div className="wrapperMidSection">
@@ -384,3 +389,6 @@ const FormVarianti: FC<PropsFormVarianti> = ({
 };
 
 export { FormNewProdotto, FormVarianti, FormProdotto };
+function useStateDispatch<T>(): [any, any] {
+  throw new Error("Function not implemented.");
+}
