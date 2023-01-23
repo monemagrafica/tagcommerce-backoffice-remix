@@ -6,18 +6,6 @@ const ContextData = ({ children }) => {
   const [attribute, setAttribute] = useState();
   const [newProdotto, setNewProdotto] = useState({});
 
-  const [inputName, setInputName] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
-  const [inputMedia, setInputMedia] = useState("");
-
-  const tempData = {
-    inputName: inputName,
-    setInputName: setInputName,
-    inputDescription: inputDescription,
-    setInputDescription: setInputDescription,
-    inputMedia: inputMedia,
-    setInputMedia: setInputMedia,
-  };
   const data = {
     attribute: attribute,
     setAttribute: setAttribute,
@@ -26,9 +14,7 @@ const ContextData = ({ children }) => {
   };
 
   return (
-    <ShareContext.Provider value={{ data, tempData }}>
-      {children}
-    </ShareContext.Provider>
+    <ShareContext.Provider value={{ data }}>{children}</ShareContext.Provider>
   );
 };
 

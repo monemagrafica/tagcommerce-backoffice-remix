@@ -14,3 +14,7 @@ export type typeProdotto = {
     attributi?: attributi;
     varianti?: [varianti]
 }
+export type TypeImageObject = {
+    id: string;
+    url: string;
+};

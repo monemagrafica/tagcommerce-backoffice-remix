@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SetStateAction, Dispatch } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { TypeImageObject } from "~/types/prodotti";
 
-type Props = { maxNumber: number };
-type TypeImageObject = {
-  id: string;
-  url: string;
+type Props = {
+  maxNumber: number;
+  setImagesFromLoader: Dispatch<SetStateAction<{}[] | undefined>>;
 };
-function LoaderImmagini({ maxNumber }: Props) {
+
+function LoaderImmagini({ maxNumber, setImagesFromLoader }: Props) {
   const [images, setImages] = useState<File[]>([]);
   const [imageURL, setImageURL] = useState<{}[]>([]);
   const [deletingImage, setDeletingImage] = useState<string>("");
@@ -23,6 +24,10 @@ function LoaderImmagini({ maxNumber }: Props) {
   useEffect(() => {
     deleteImageFromArray();
   }, [deletingImage]);
+
+  useEffect(() => {
+    setImagesFromLoader(imageURL);
+  }, [imageURL]);
 
   function onImageChange(e: Event | undefined) {
     const target = e?.target as HTMLInputElement;

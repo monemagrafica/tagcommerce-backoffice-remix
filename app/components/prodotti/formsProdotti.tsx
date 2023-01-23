@@ -1,5 +1,5 @@
 import { type FieldValues, useForm } from "react-hook-form";
-import { type FC } from "react";
+import { useState, type FC } from "react";
 
 import type {
   typeValidazioniFormProdotto,
@@ -12,7 +12,7 @@ import imgBtnSpedizioni from "../../assets/img/spedizioniBtn.svg";
 import { postNewProduct } from "~/dataold/DataFunctions";
 import imageVarianti from "../../assets/img/varianti.svg";
 import type { attributi } from "~/types/attributi";
-import { typeProdotto } from "~/types/prodotti";
+import { TypeImageObject, typeProdotto } from "~/types/prodotti";
 import LoaderImmagini from "./loaderImmagini";
 
 const validazioniFormProdotto = {
@@ -39,7 +39,7 @@ type PropsFormVarianti = {
   newProdotto: typeProdotto;
   animateAndExit: () => void;
 };
-
+//ANCHOR - Form Prodotto
 const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
   const {
     register,
@@ -175,17 +175,18 @@ const FormProdotto: FC<PropsFormProdotto> = ({ animateAndExit, prodotto }) => {
     </form>
   );
 };
-
+//ANCHOR - Form New Prodotto
 const FormNewProdotto: FC<PropsFormProdotto> = ({
   animateAndExit,
   newProdotto,
-  tempData,
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [imagesFromLoader, setImagesFromLoader] = useState<TypeImageObject[]>();
 
   const onSubmit = (data: FieldValues) => {
     newProdotto.nome = data.nome;
@@ -195,31 +196,19 @@ const FormNewProdotto: FC<PropsFormProdotto> = ({
     } else {
       newProdotto.prezzo = data.prezzo;
       newProdotto.quantita = data.quantita;
+      newProdotto.immagini = imagesFromLoader;
       postNewProduct(newProdotto);
     }
   };
 
-  function inputChange(e) {
-    console.log(e.target.attributes);
-    if (e.target.attributes.name.nodeValue === "nome") {
-      tempData?.setInputName(e.target.value);
-    }
-    if (e.target.attributes.name.nodeValue === "descrizione") {
-      tempData?.setInputDescription(e.target.value);
-    }
-  }
-
-  console.log("tempData", tempData);
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} onChange={(e) => inputChange(e)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mainFormWrapper">
         {" "}
         <div className="form-control">
           <label>Nome</label>
           <input
             type="text"
-            value={tempData?.inputName ?? ""}
             {...register("nome", {
               required: true,
             })}
@@ -233,7 +222,6 @@ const FormNewProdotto: FC<PropsFormProdotto> = ({
             <label>Descrizione</label>
             <textarea
               rows={10}
-              value={tempData?.inputDescription ?? ""}
               {...register("descrizione", {
                 required: true,
               })}
@@ -243,7 +231,10 @@ const FormNewProdotto: FC<PropsFormProdotto> = ({
             )}
           </div>
           <div className="form-control immagine">
-            <LoaderImmagini maxNumber={4} />
+            <LoaderImmagini
+              maxNumber={4}
+              setImagesFromLoader={setImagesFromLoader}
+            />
           </div>
         </section>
         <div className="wrapperMidSection">
@@ -317,7 +308,7 @@ const FormNewProdotto: FC<PropsFormProdotto> = ({
     </form>
   );
 };
-
+//ANCHOR - Form Varianti
 const FormVarianti: FC<PropsFormVarianti> = ({
   attributi,
   animateAndExit,
