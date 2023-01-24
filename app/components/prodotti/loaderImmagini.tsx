@@ -15,45 +15,19 @@ function LoaderImmagini({
 }: Props) {
   const [images, setImages] = useState<File[]>([]);
   const [imageURL, setImageURL] = useState<{}[]>([]);
-  const [deletingImage, setDeletingImage] = useState<string>("");
 
-  console.log("fra", imageURL);
-
-  //NOTE - setta l'array da inviare al context
-  useEffect(() => {
-    setImagesFromLoader && setImagesFromLoader(imageURL);
-  }, [imageURL]);
-
-  useEffect(() => {
-    if (!images.length) {
-      setImageURL([]);
-      setDeletingImage("");
-    } else {
-      createImageArray(images);
-    }
-  }, [images]);
-
-  useEffect(() => {
-    deleteImageFromArray();
-  }, [deletingImage]);
-
-  useEffect(() => {
-    setImagesFromLoader && setImagesFromLoader(imageURL);
-  }, [imageURL]);
-
-  //NOTE - all'inserimento dell'immagine aggiorna l'array con la stringa per costruire l'oggetto immagine
+  //NOTE - al caricamento del file
   function onImageChange(e: Event | undefined) {
     const target = e?.target as HTMLInputElement;
     setImages((prev) => {
       return target.files ? [...prev, target.files[0]] : [];
     });
   }
-
+  //NOTE - crea l'array con l'immagine per la preview
   function createImageArray(imageArray) {
     if (!imageArray.length) {
-      return;
+      setImageURL([]);
     }
-
     const newImageUrls: TypeImageObject[] = [];
     imageArray.forEach((image, index) => {
       const imageObject: TypeImageObject = {
@@ -67,20 +41,22 @@ function LoaderImmagini({
     });
     setImageURL(newImageUrls);
   }
-
-  function deleteImageFromArray() {
-    const imageToDeleteFromArray = imageURL?.findIndex(
-      (item: TypeImageObject) => item.id === deletingImage
-    );
-    const updateImagesArray = images.filter((item, index) => {
-      return index !== imageToDeleteFromArray;
+  //NOTE - elimina l'immagine
+  function deleteImageArray(index: number) {
+    const updatedImages = images.filter((item, indexToFilter) => {
+      return index !== indexToFilter;
     });
-
-    setImages(updateImagesArray);
-    setImageURL([]);
+    setImages(updatedImages);
   }
-  console.log(imageURL);
-  console.log(images);
+  //NOTE - da attivare per sincronizzare con le immagini gia presenti
+  /* useEffect(() => {
+    immaginiPresenti && setImages(immaginiPresenti);
+  }, [immaginiPresenti]);*/
+
+  useEffect(() => {
+    setImagesFromLoader && setImagesFromLoader(images);
+    createImageArray(images);
+  }, [images]);
 
   return (
     <>
@@ -97,7 +73,7 @@ function LoaderImmagini({
       </div>
       <div className="wrapperImage">
         {imageURL?.length
-          ? imageURL.map((item: TypeImageObject) => {
+          ? imageURL.map((item: TypeImageObject, index: number) => {
               return (
                 <div key={item.id} className="wrapperSingleImage">
                   <img
@@ -106,7 +82,7 @@ function LoaderImmagini({
                     width={40}
                     height={40}
                   />
-                  <span onClick={() => setDeletingImage(item.id)}>x</span>
+                  <span onClick={() => deleteImageArray(index)}>x</span>
                 </div>
               );
             })

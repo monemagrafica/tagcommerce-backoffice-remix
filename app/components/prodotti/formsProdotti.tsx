@@ -201,7 +201,8 @@ const FormNewProdotto: FC<PropsFormProdotto> = ({
     } else {
       newProdotto.prezzo = data.prezzo;
       newProdotto.quantita = data.quantita;
-      newProdotto.immagini = imagesFromLoader;
+      //NOTE - da testare con le api
+      //newProdotto.immagini = imagesFromLoader;
       postNewProduct(newProdotto);
     }
   };
